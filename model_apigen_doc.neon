@@ -5,7 +5,7 @@ destination: httpdocs/doc/
 report: report.xml
 
 # Title of generated documentation
-title: Raspishi RF Internal
+title: Model Internal
 # Template config file
 #templateConfig: '/usr/share/php/data/ApiGen/templates/bootstrap/config.neon'
 # Grouping of classes
