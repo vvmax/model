@@ -1,0 +1,7 @@
+$baseColor:#f90;
+a{
+    color:$baseColor;
+}
+a:hover{
+    color:darken($baseColor,20)
+}
