@@ -1,0 +1,29 @@
+# Source file or directory to parse
+source: httpdocs/lib/
+# Directory where to save the generated documentation
+destination: httpdocs/doc/
+report: report.xml
+
+# Title of generated documentation
+title: Raspishi RF Internal
+# Template config file
+#templateConfig: '/usr/share/php/data/ApiGen/templates/bootstrap/config.neon'
+# Grouping of classes
+groups: packages
+# Element types for search input autocomplete
+autocomplete: [classes,constants,functions,methods,properties,classconstants]
+
+# Generate documentation for methods and properties with given access level
+accessLevels: [public, protected, private]
+# Generate documentation for elements marked as internal and display internal documentation parts
+internal: Yes
+# Generate documentation for PHP internal classes
+php: No
+# Generate tree view of classes, interfaces and exceptions
+tree: Yes
+# Generate documentation for deprecated classes, methods, properties and constants
+deprecated: Yes
+# Generate documentation of tasks
+todo: Yes
+# Generate highlighted source code files
+sourceCode: Yes
