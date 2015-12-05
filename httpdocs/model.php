@@ -1,6 +1,8 @@
 <?php
     include 'lib/include.php';
-    //print_r($_REQUEST);
+    /**
+     * @todo разрабться с лишними элементами
+     */
     if (!isset($_REQUEST['ID']) ||  intval ($_REQUEST['ID'])<1)
     {
 	ob_end_clean();
@@ -44,7 +46,6 @@
 	   $arCategories[$arRow['CATEGORYID']]['ELEMENTS'][] =$arRow;
 	   
 	}
-	//print_r($arCategories);
 	?>
 <html>
     <head>

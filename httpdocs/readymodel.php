@@ -20,11 +20,15 @@ $arData= Utils_Model::getFillModel($_REQUEST['ID']);
             <section>
                 <h1>Заполните модель</h1>
 		<h2><?php print $arData['MODEL']['NAME'] ?></h2>
-		<a href="/readymodel.php?ID=<?=$_REQUEST['ID']?>">Ссылка на ответ</a><br>
-		<a href="/image.php?ID=<?=$_REQUEST['ID']?>">Ссылка на схему</a><br>
-		<a onclick="window.print();return false;" href="javascript:void(0)">Печать  схемы</a>
-		<img class="miniImage" src="/image.php?ID=<?=$_REQUEST['ID']?>">
-		    <table class='elements'><tr><th><?= $arData['MODEL']['OBJECT']?></th><td><?=$arData['ANSWER']['DATA']['OBJECT']?></td></tr></table>
+		<div class="textimg">
+		    <img class="miniImage" src="/image.php?ID=<?=$_REQUEST['ID']?>">
+		    <div class="imgmenu"> 
+		        <a href="/readymodel.php?ID=<?=$_REQUEST['ID']?>">Ссылка на ответ</a>
+			<a href="/image.php?ID=<?=$_REQUEST['ID']?>">Ссылка на схему</a>
+			<a onclick="window.print();return false;" href="javascript:void(0)">Печать  схемы</a>
+		    </div>
+		</div>
+		<table class='elements'><tr><th><?= $arData['MODEL']['OBJECT']?></th><td><?=$arData['ANSWER']['DATA']['OBJECT']?></td></tr></table>
 		<?foreach ($arData['CATEGORIES'] as $key=>$arCategory):	?>
 		<h3><?= $arCategory['NAME']?></h3>
 		<table class="elements">
