@@ -41,11 +41,29 @@ class Utils_Image {
 	$textHeight=$arSizes[5]-$arSizes[1];
 	$x=self::calcX($xc - $texWidht/2);
 	$y=self::calcY($yc + ($arSizes[5]-$arSizes[1])/2);
+	if (isset($arOptions['ADDTEXT']))
+	{
+	    $y+=$textHeight/2;
+	    
+	}
 	if ($x < 0) $x=0;
 	if ($x+$texWidht > self::$pageWidth) $x=self::$pageWidth-$texWidht;
 	if ($y-$textHeight < 0) $y=$textHeight;
 	if ($y > self::$pageHeight) $y=self::$pageHeight;
 	if (isset($arOptions['OFFSET_YZERO']) && intval($yc)==0) $y-=$arOptions['OFFSET_YZERO'];
+	if (isset($arOptions['ADDTEXT']))
+	{
+	    $arSizes2 = imagettfbbox($fontSize, 0, $fullFont, $arOptions['ADDTEXT']);
+	    $textHeight2=$arSizes2[5]-$arSizes2[1];
+	    $x2=$x;
+	    $y2=$y-$textHeight2+3;
+	    if ($y2 > self::$pageHeight)
+	    {
+		$y2=self::$pageHeight;
+		$y=self::$pageHeight-$textHeight2+3;
+	    }
+	    imagettftext($image, $fontSize,0,$x2,$y2,$fontColor,$fullFont,$arOptions['ADDTEXT']);
+	}
 	imagettftext($image, $fontSize,0,$x,$y,$fontColor,$fullFont,$text);
     }
 
@@ -91,10 +109,11 @@ class Utils_Image {
 		$coordX = $x0 + $u * $deltaX;
 		$coordY = (($y-$y0)/($x-$x0))*($coordX-$x0)+$y0;
 		imageellipse($image,self::calcX($coordX),self::calcY($coordY),self::$roundSmall, self::$roundSmall, $text_color);
-		$text=$arData['ANSWER']['DATA']['ELEMENTS'][$arCategory['ELEMENTS'][$u-1]['ID']];
+		$text=$arData['CATEGORIES'][$i+1]['ELEMENTS'][$u-1]['NAME'];
 		self::writeText($image, $coordX, $coordY, $text, $text_color,array(
 		    'OFFSET_YZERO'=>self::$roundSmall*2,
-		    'FONTSIZE'=>  self::$elementsTextSize
+		    'FONTSIZE'=>  self::$elementsTextSize,
+		    'ADDTEXT'=>$arData['ANSWER']['DATA']['ELEMENTS'][$arCategory['ELEMENTS'][$u-1]['ID']]
 			));
 	    }
 	    $i++;

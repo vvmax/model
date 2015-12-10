@@ -6,6 +6,7 @@ if (isset($_REQUEST['OBJECT']) && isset($_REQUEST['ELEMENTS']))
     $_REQUEST['ID']=$obTableAnswer->addAnswer($_REQUEST);
 }
 $arData= Utils_Model::getFillModel($_REQUEST['ID']);
+
 ?>
 <html>
     <head>
