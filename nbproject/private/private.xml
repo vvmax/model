@@ -3,18 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Z:/home/test1.ru/httpdocs/header.php</file>
-            <file>file:/Z:/home/test1.ru/httpdocs/index.php</file>
+            <file>file:/Z:/home/test1.ru/httpdocs/lib/utils/image.php</file>
             <file>file:/Z:/home/test1.ru/httpdocs/lib/data/table.php</file>
-            <file>file:/Z:/home/test1.ru/httpdocs/readymodel.php</file>
             <file>file:/Z:/home/test1.ru/src/SQL/model1.sql</file>
-            <file>file:/Z:/home/test1.ru/httpdocs/.gitignore</file>
             <file>file:/Z:/home/test1.ru/scss/styles.scss</file>
             <file>file:/Z:/home/test1.ru/httpdocs/admin/editmodel.php</file>
             <file>file:/Z:/home/test1.ru/httpdocs/lib/data/element.php</file>
             <file>file:/Z:/home/test1.ru/httpdocs/model.php</file>
+            <file>file:/Z:/home/test1.ru/httpdocs/header.php</file>
+            <file>file:/Z:/home/test1.ru/httpdocs/index.php</file>
+            <file>file:/Z:/home/test1.ru/httpdocs/readymodel.php</file>
+            <file>file:/Z:/home/test1.ru/httpdocs/.gitignore</file>
+            <file>file:/Z:/home/test1.ru/httpdocs/css/styles.css</file>
             <file>file:/Z:/home/test1.ru/httpdocs/.htaccess</file>
             <file>file:/Z:/home/test1.ru/httpdocs/lib/data/answer.php</file>
+            <file>file:/Z:/home/test1.ru/httpdocs/image.php</file>
         </group>
     </open-files>
 </project-private>

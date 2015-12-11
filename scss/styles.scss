@@ -162,7 +162,7 @@ button{
     }
     td{
         border: none;
-        border-radius:10px;
+	border-left: 1px solid darken($textBackgroudColor,20);
     }
     th{
         width: 300px;

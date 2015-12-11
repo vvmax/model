@@ -34,7 +34,7 @@ $arData= Utils_Model::getFillModel($_REQUEST['ID']);
 		<h3><?= $arCategory['NAME']?></h3>
 		<table class="elements">
 		    <?foreach ($arCategory['ELEMENTS'] as $arElement):	?>
-		<tr><th><?= $arElement['NAME']?></th><td><?=$arData['ANSWER']['DATA']['ELEMENTS'][$arElement['ID']]?></td></tr>
+		    <tr><th><?= $arElement['NAME']?></th><td class="newelenments"><?=$arData['ANSWER']['DATA']['ELEMENTS'][$arElement['ID']]?></td></tr>
 		    <?  endforeach;	?>
 		</table>
 		<?  endforeach;	?>

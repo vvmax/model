@@ -138,7 +138,7 @@ button {
     border-radius: 10px; }
   .elements td {
     border: none;
-    border-radius: 10px; }
+    border-left: 1px solid #ffce5d; }
   .elements th {
     width: 300px; }
   .elements tr:nth-child(odd) {
