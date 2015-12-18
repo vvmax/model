@@ -118,8 +118,9 @@ class Utils_Image {
 	    }
 	    $i++;
 	}
-	Header('Content-type: image/png');
+	ob_end_clean();
+ 	Header('Content-type: image/png');
 	imagepng($image);
-	
+	ob_end_flush();	
     }
 }

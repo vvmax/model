@@ -10,6 +10,7 @@ and open the template in the editor.
         <title>Логические схемы</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="/css/styles.css">
+	<script type="text/javascript" src="/opt/jquery-1.4.3.min.js"></script>
     </head>
     <body>
         <div id="wrap">

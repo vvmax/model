@@ -46,12 +46,11 @@ $arData= Utils_Model::getFillModel($_REQUEST['ID']);
 	    $(document).ready(function(){
 		$('.miniImage').click(function(e){
 		    var ob=$(this);
-		    console.log(ob.attr('src'));
 		    var box=$('<div/>',{class:'imagebox',css:{'background-image':'url('+ob.attr('src')+')'}});
 		    $('body').append(box);
 		    box.click(function(){
 			box.remove();
-		    })
+		    });
 		});
 		
 	    });
