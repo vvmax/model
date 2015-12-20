@@ -1,3 +1,4 @@
 <?php
 include 'lib/include.php';
-Utils_Image::getImage(Utils_Model::getFillModel($_REQUEST['ID']));
+$obTableAnswer = new Data_Answer();
+Utils_Image::getImage(Utils_Model::getFillModel($obTableAnswer->getId($_REQUEST['CODE'])));

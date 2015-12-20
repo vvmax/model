@@ -12,7 +12,7 @@ class Utils_Util {
     static function printDebug($value)
     {
 	print "<pre>";
-	if(is_array($value))
+	if(is_array($value) || is_object($value))
 	{
 	    print_r($value);
         }

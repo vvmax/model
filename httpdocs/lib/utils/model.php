@@ -16,6 +16,7 @@ class Utils_Model
 		    'FIELDS'=>array('MODELID','ANSWER'),
 		    'FILTER'=>array('ID'=>$answerId)
 		    ));
+	if ($rsAnswer===FALSE){return FALSE;}
 	$arAnswer = $rsAnswer->fetch_assoc();
 	if ($arAnswer==false)
 	{

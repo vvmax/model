@@ -1,12 +1,18 @@
 <?
 include 'lib/include.php';
+$obTableAnswer = new Data_Answer();
 if (isset($_REQUEST['OBJECT']) && isset($_REQUEST['ELEMENTS']))
 {
-    $obTableAnswer = new Data_Answer();
-    $_REQUEST['ID']=$obTableAnswer->addAnswer($_REQUEST);
+    $_REQUEST['CODE']=$obTableAnswer->getCode($obTableAnswer->addAnswer($_REQUEST));
 }
-$arData= Utils_Model::getFillModel($_REQUEST['ID']);
-
+$arData= Utils_Model::getFillModel($obTableAnswer->getId($_REQUEST['CODE']));
+if ($arData===FALSE)
+{
+    ob_end_clean();
+    header('Location: /models.php');
+    ob_end_flush();
+    exit();
+}
 ?>
 <html>
     <head>
@@ -22,10 +28,10 @@ $arData= Utils_Model::getFillModel($_REQUEST['ID']);
                 <h1>Заполните модель</h1>
 		<h2><?php print $arData['MODEL']['NAME'] ?></h2>
 		<div class="textimg">
-		    <img class="miniImage" src="/image.php?ID=<?=$_REQUEST['ID']?>">
+		    <img class="miniImage" src="/image.php?CODE=<?=$_REQUEST['CODE']?>">
 		    <div class="imgmenu"> 
-		        <a href="/readymodel.php?ID=<?=$_REQUEST['ID']?>">Ссылка на ответ</a>
-			<a href="/image.php?ID=<?=$_REQUEST['ID']?>">Ссылка на схему</a>
+		        <a href="/readymodel.php?CODE=<?=$_REQUEST['CODE']?>">Ссылка на ответ</a>
+			<a href="/image.php?CODE=<?=$_REQUEST['CODE']?>">Ссылка на схему</a>
 			<a onclick="window.print();return false;" href="javascript:void(0)">Печать  схемы</a>
 		    </div>
 		</div>
