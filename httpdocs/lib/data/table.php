@@ -11,6 +11,7 @@ class Data_Table {
     const FIELD_TYPE_INTEGER = 0;
     const FIELD_TYPE_STRING = 1;
     const FIELD_TYPE_DATE = 2;
+    CONST FIELD_TYPE_GENERATE = 3;
     /**
      * Имя таблицы
      * @var string 
@@ -46,15 +47,24 @@ class Data_Table {
 	    foreach($arOption['FILTER'] as $fieldName => $fieldValue)
 	    {
 		$fieldName = strtoupper($fieldName);
-		if (!isset($this->arFields[$fieldName])) {continue;}
+		if (!isset($this->arFields[$fieldName]) || (string)$fieldValue=='') 
+		{
+		    return FALSE;
+		    
+		}
 		if ($this->arFields[$fieldName]["TYPE"] == self::FIELD_TYPE_INTEGER)
 		{
 		    $fieldValue = intval($fieldValue);
 		    $arWhere[]="$fieldName=$fieldValue";
-		 }
+		}
+		elseif ($this->arFields[$fieldName]["TYPE"] == self::FIELD_TYPE_GENERATE)
+		{
+		    $fieldValue = addslashes($fieldValue);
+		    $arWhere[]="$fieldName='$fieldValue'";
+		}
 		else
 		{
-		    continue; 
+		    return FALSE; 
 		}
 	    }
 	}
@@ -90,6 +100,10 @@ class Data_Table {
 		    break;
 		case self::FIELD_TYPE_DATE:
 		    $arValue ="'".$arValue."'";
+		    break;
+		case self::FIELD_TYPE_GENERATE:
+		    $strIndex= date("YmdHis").mt_rand(0, 1000000000);
+		    $arValue="'".md5($strIndex)."'";
 		    break;
 		default:
 		    continue;
