@@ -5,6 +5,9 @@
  * @author Maxim Vorobyev
  * @version 1.0
  * @changed 2015.10.14
+ * @todo 
+ *  - Центрирование надписей
+ *  - В шахматном порядке
  */
 class Utils_Image {
     static $pageWidth=3507;
@@ -109,7 +112,7 @@ class Utils_Image {
 		$coordX = $x0 + $u * $deltaX;
 		$coordY = (($y-$y0)/($x-$x0))*($coordX-$x0)+$y0;
 		imageellipse($image,self::calcX($coordX),self::calcY($coordY),self::$roundSmall, self::$roundSmall, $text_color);
-		$text=$arData['CATEGORIES'][$i+1]['ELEMENTS'][$u-1]['NAME'];
+		$text=$arData['CATEGORIES'][$categoryId]['ELEMENTS'][$u-1]['NAME'];
 		self::writeText($image, $coordX, $coordY, $text, $text_color,array(
 		    'OFFSET_YZERO'=>self::$roundSmall*2,
 		    'FONTSIZE'=>  self::$elementsTextSize,
