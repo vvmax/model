@@ -127,5 +127,18 @@ class Data_Table {
 	}
 	return $db->insert_id;
     }
-    
+    public function getOptions()
+    {
+	$rsList=$this->select(array(
+	    'FIELDS'=>array(
+		'ID','NAME'
+	    )
+	));
+	$arResult= array();
+	while ($arRow=$rsList->fetch_assoc())
+	{
+	   $arResult[]= $arRow;
+	}
+	return $arResult;
+    }
 }
