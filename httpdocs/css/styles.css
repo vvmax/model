@@ -96,20 +96,22 @@ table {
     border-bottom: 1px solid black; }
 
 button {
-  background: #759999;
+  background: #B2CCCC;
   border-radius: 3px;
   height: 40px;
   line-height: 40px;
+  margin-top: 5px;
+  margin-left: 5px;
   box-shadow: none;
   display: inline-block;
   padding: 0 15px;
   border: none;
   text-align: center;
-  color: #fff;
   text-transform: uppercase;
   cursor: pointer; }
   button:hover {
-    background: #5F7373; }
+    color: #fff;
+    background: #759999; }
 
 .list {
   list-style: none;
@@ -124,6 +126,7 @@ button {
       right:$baseMargin;
   }*/ }
   .list li {
+    position: relative;
     display: block;
     margin-bottom: 10px;
     background: #FFEDDE; }
@@ -140,6 +143,19 @@ button {
         font-weight: bold; }
       .list li a:hover {
         box-shadow: 0 0 10px 2px #ccc; }
+      .list li a.delete {
+        background: none;
+        color: red;
+        position: absolute;
+        top: 20px;
+        left: -20px;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        font-size: 20px;
+        padding: 0;
+        margin: 0;
+        text-align: center; }
 
 .elements {
   width: 530px;
@@ -240,6 +256,14 @@ button {
   width: auto; }
 
 a, button {
-  transition: all 0.3s ease-out 0.2s; }
+  transition: all 0.3s ease-in; }
+
+.error {
+  color: #FF6347; }
+
+.note {
+  font-size: 12px;
+  color: #1a1a1a;
+  display: block; }
 
 /*# sourceMappingURL=styles.css.map */

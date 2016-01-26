@@ -1,8 +1,5 @@
 <?php
     include 'lib/include.php';
-    /**
-     * @todo разрабться с лишними элементами
-     */
     if (!isset($_REQUEST['ID']) ||  intval ($_REQUEST['ID'])<1)
     {
 	ob_end_clean();

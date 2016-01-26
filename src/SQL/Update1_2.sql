@@ -1,0 +1,1 @@
+alter table users change COLUMN PASSWORD PASSWORD varchar(32) not null 

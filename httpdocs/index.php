@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <?php include 'lib/include.php';?>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Cоздание логическо-смысловых моделей по химии</title>

@@ -5,9 +5,9 @@
  * @author Maxim Vorobyev
  * @version 1.0
  * @changed 2015.10.14
- * @todo 
- *  - Центрирование надписей
- *  - В шахматном порядке
+ * 
+ *  @todo - Центрирование надписей
+ *  @todo - В шахматном порядке
  */
 class Utils_Image {
     static $pageWidth=3507;

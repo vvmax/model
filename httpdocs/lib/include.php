@@ -6,6 +6,7 @@
  * Функция автозагрузки классов
  * @param string $name имя класса
  */
+session_start();
 ob_start();
 function __autoload($name) {
     $name = strtolower(str_replace('_','/',$name));

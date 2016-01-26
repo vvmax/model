@@ -18,9 +18,9 @@ class Data_Answer extends Data_Table {
 		//'NAME'
 		'TYPE'=> self::FIELD_TYPE_STRING
 	    ),
-	    'USERHASH' => array(
+	    'USERID' => array(
 		//'NAME'
-		'TYPE'=> self::FIELD_TYPE_STRING
+		'TYPE'=> self::FIELD_TYPE_INTEGER
 	    ),
 	    'MODELID' => array(
 		//'NAME'
@@ -42,7 +42,8 @@ class Data_Answer extends Data_Table {
        {
 	   return false;
        }
-       $arOptions['FIELDS']['ADATE']= date('Y-m-d');
+	   $arOptions['FIELDS']['USERID']= Utils_Currentuser::getInstance()->getId();;
+       $arOptions['FIELDS']['ADATE']= date('Y-m-d H:i:s');
        $arOptions['FIELDS']['ANSWER']=  serialize($arAnswer);
        $arOptions['FIELDS']['MODELID']= $arAnswer['MODELID'];
        $arOptions['FIELDS']['CODE']='';
