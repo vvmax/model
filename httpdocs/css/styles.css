@@ -193,6 +193,7 @@ button {
   font-size: 10px; }
 
 .imgmenu {
+  clear: both;
   text-align: center; }
   .imgmenu a {
     color: #266363;
