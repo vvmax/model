@@ -9,6 +9,7 @@
  *
 */
 class Utils_Util {
+	const version='v 3.0';
     static function printDebug($value)
     {
 	print "<pre>";

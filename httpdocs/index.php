@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Cоздание логическо-смысловых моделей по химии</title>
+        <title>Cоздание логическо-смысловых моделей</title>
         <meta charset="UTF-8">
-	<meta name="keywords" content="Логико-смысловая модель,химия" />
-<meta name="description" content="Cоздание логическо-смысловых моделей по химии" />
+	<meta name="keywords" content="Логико-смысловая модель" />
+<meta name="description" content="Cоздание логическо-смысловых моделей" />
         <link rel="stylesheet" type="text/css" href="/css/styles.css">
 	<link rel="stylesheet" type="text/css" href="/opt/fancybox/jquery.fancybox-1.3.4.css">
 	<script type="text/javascript" src="/opt/jquery-1.4.3.min.js"></script>
@@ -15,7 +15,7 @@
         <div id="wrap">
             <?php include 'header.php';?>
             <section>
-                <h1>Cоздание логическо-смысловых моделей по химии</h1>
+                <h1>Cоздание логическо-смысловых моделей</h1>
                 <p>ЛСМ – это образно-понятийная дидактическая конструкция, в которой смысловой
     компонент представлен семантически связанной системой понятий, а логический компонент выполнен из радиальных и круговых
     графических элементов, предназначенных

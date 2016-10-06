@@ -92,8 +92,20 @@ class Data_Table
 				$arOn = array();
 				foreach ($arValue['ON'] as $childF => $parentF)
 				{
-					$arOn[] = $arValue['PARENT'] . '.' . $parentF . '=' .
-							$arValue['TABLE'] . '.' . $childF;
+					$arRes = array();
+					preg_match('/([#])?([A-Z]+)/', $childF, $arRes);
+					$fieldName = $arRes[2];
+					$sign = $arRes[1];
+					if ($sign == '#')
+					{
+						$arOn[] = $parentF . '=' .
+								$arValue['TABLE'] . '.' . $fieldName;
+					}
+					else
+					{
+						$arOn[] = $arValue['PARENT'] . '.' . $parentF . '=' .
+								$arValue['TABLE'] . '.' . $fieldName;
+					}
 				}
 				$join.=implode(' and ', $arOn);
 				$arJoin[] = $join;
@@ -193,10 +205,10 @@ class Data_Table
 		{
 			return false;
 		}
-		$arFieldsVal=array();
-		foreach($arFields as $key=>$value)
+		$arFieldsVal = array();
+		foreach ($arFields as $key => $value)
 		{
-			$arFieldsVal[]=$key.' = '.$value;
+			$arFieldsVal[] = $key . ' = ' . $value;
 		}
 		$arWhere = (isset($arOption['FILTER']) ?
 						$this->getWhereArray($arOption['FILTER']) : array());
@@ -225,6 +237,10 @@ class Data_Table
 			foreach ($arFilter as $fieldName => $fieldValue)
 			{
 				$fieldName = strtoupper($fieldName);
+				$arRes = array();
+				preg_match('/([%><])?([A-Z]+)/', $fieldName, $arRes);
+				$fieldName = $arRes[2];
+				$sign = $arRes[1];
 				/**
 				 * Проверка существования запрашиваемого поля в списке доступных полей
 				 */
@@ -240,13 +256,32 @@ class Data_Table
 						$arWhere[] = $this->tableName . '.' . "$fieldName=$fieldValue";
 						break;
 					case self::FIELD_TYPE_GENERATE:
-					case self::FIELD_TYPE_STRING:
 						$fieldValue = addslashes($fieldValue);
 						$arWhere[] = $this->tableName . '.' . "$fieldName='$fieldValue'";
 						break;
+					case self::FIELD_TYPE_STRING:
+						$fieldValue = addslashes($fieldValue);
+						if ($sign === '%')
+						{
+							$arWhere[] = $this->tableName . '.' . "$fieldName like '$fieldValue%'";
+						}
+						else
+						{
+							$arWhere[] = $this->tableName . '.' . "$fieldName='$fieldValue'";
+						}
+						break;
 					case self::FIELD_TYPE_CLASS:
 						$fieldValue = $this->parseClass($fieldValue);
-						$arWhere[] = $this->tableName . '.' . "$fieldName='$fieldValue'";
+						if ($fieldValue === '')
+							return false;
+						if ($sign === '%')
+						{
+							$arWhere[] = $this->tableName . '.' . "$fieldName like '$fieldValue%'";
+						}
+						else
+						{
+							$arWhere[] = $this->tableName . '.' . "$fieldName='$fieldValue'";
+						}
 						break;
 					default :
 						$this->arLastError[] = 'Неизвестный тип поля ' . $fieldName;

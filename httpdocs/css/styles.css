@@ -95,7 +95,8 @@ table {
     border: 0 solid aqua;
     border-bottom: 1px solid black; }
 
-button {
+button, .button {
+  text-decoration: none;
   background: #B2CCCC;
   border-radius: 3px;
   height: 40px;
@@ -109,9 +110,13 @@ button {
   text-align: center;
   text-transform: uppercase;
   cursor: pointer; }
-  button:hover {
+  button:hover, .button:hover {
     color: #fff;
     background: #759999; }
+
+.smallbutton {
+  height: 20px;
+  line-height: 20px; }
 
 .list {
   list-style: none;
@@ -168,6 +173,13 @@ button {
     width: 300px; }
   .elements tr:nth-child(odd) {
     background-color: #FFEDDE; }
+  .elements.searchresult {
+    width: 750px;
+    font-size: 14px; }
+    .elements.searchresult .button {
+      height: 20px;
+      line-height: 20px;
+      font-size: 12px; }
 
 .miniImage {
   width: 400px;
@@ -265,5 +277,18 @@ a, button {
   font-size: 12px;
   color: #1a1a1a;
   display: block; }
+
+.studentsearch {
+  float: right; }
+  .studentsearch label {
+    display: block; }
+  .studentsearch select, .studentsearch input {
+    width: 100%; }
+  .studentsearch .formitem {
+    margin-bottom: 7.5px; }
+
+.smalltable {
+  width: 400px;
+  margin-top: 15px; }
 
 /*# sourceMappingURL=styles.css.map */
