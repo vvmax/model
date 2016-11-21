@@ -25,7 +25,6 @@ $(document).ready(function () {
 				dataType: 'json',
 				success: function (data)
 				{
-					console.log(123);
 					var table = $('#searchtable');
 					table.empty();
 					for (i = 0; i < data.users.length; ++i)
@@ -109,7 +108,6 @@ $(document).ready(function () {
 function addStudent(bt,id)
 {
 	var btn = $(bt);
-	console.log(id);
 	$.ajax({
 				url: '/api.php',
 				data: {STUDENTID: id, action: 'addStudent'},
@@ -120,7 +118,6 @@ function addStudent(bt,id)
 					
 					if(result.error===0)
 					{
-						console.log(btn,btn.parent('td'));
 						btn.parent('td').empty().text('Добавлен');
 					}
 					else

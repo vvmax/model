@@ -1,4 +1,1 @@
-<Files .gitignore>
-deny from all
-</Files>
 AddDefaultCharset UTF-8
