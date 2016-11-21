@@ -156,7 +156,7 @@ class Utils_Currentuser extends Utils_User
 		}
 		$obUserTable = new Data_Users();
 		$rsUser = $obUserTable->select(array(
-			'FIELDS' => array('ID'),
+			'FIELDS' => array('ID', 'USERTYPEID'),
 			'FILTER' => array(
 				'LOGIN'		 => $arRequest['login'],
 				'PASSWORD'	 => $this->codec($arRequest['password'])
@@ -169,11 +169,17 @@ class Utils_Currentuser extends Utils_User
 				$_SESSION['USERID'] = $arUser['ID'];
 				$secret = $this->codec($this->id . date('YmdHis'));
 				$_SESSION['secret'] = $secret;
+				$_SESSION['USERTYPEID'] = $arUser['USERTYPEID'];
 				setcookie('history', $secret, time() + 2678400);
 				return true;
 			}
 		}
 		return array('global' => 'Неверно введен логин или пароль');
+	}
+
+	public function isTeacher()
+	{
+		return $_SESSION['USERTYPEID'] == Data_Usertype::USER_TYPE_TEACHER;
 	}
 
 	public function isLogged()
@@ -195,7 +201,7 @@ class Utils_Currentuser extends Utils_User
 		$rsAnswers = $obTableAnswer->select(
 				array(
 					'FIELDS' => array(
-						'ADATE', "CODE",'ID'
+						'ADATE', "CODE", 'ID'
 					),
 					"FILTER" => array(
 						'USERID' => $this->id
@@ -227,10 +233,193 @@ class Utils_Currentuser extends Utils_User
 	{
 		$obTableAnswer = new Data_Answer();
 		return $obTableAnswer->delete(array(
-			'ID'	 => $id,
-			'USERID' => $this->getId()
+					'ID'	 => $id,
+					'USERID' => $this->getId()
+						)
+		);
+	}
+
+	public function addStudent($id)
+	{
+		$obTableFriends = new Data_Friends();
+		return $obTableFriends->insert(array(
+					'FIELDS' => array
+						(
+						'TEACHERID'	 => $this->id,
+						'STUDENTID'	 => $id
+					)
+		));
+	}
+
+	public function getTeacherList($aid)
+	{
+		$obTableFriends = new Data_Friends();
+		$rsTeacherList = $obTableFriends->select(array(
+			"FIELDS" => array(
+				'ACCEPTED'
+			),
+			'FILTER' => array(
+				'STUDENTID' => $this->id
+			),
+			'JOIN'	 => array(
+				array(
+					'TYPE'	 => 'inner',
+					'TABLE'	 => 'users',
+					'ON'	 => array(
+						'ID' => 'TEACHERID'
+					),
+					'PARENT' => 'friends',
+					'FIELDS' => array(
+						'FIRSTNAME',
+						'SECONDNAME',
+						'ID',
+						'LASTNAME'
+					)
+				),
+				array(
+					'TYPE'	 => 'left',
+					'TABLE'	 => 'answeraccess',
+					'ON'	 => array(
+						'TEACHERID'	 => 'TEACHERID',
+						'USERID'	 => 'STUDENTID',
+						'#ANSWERID'	 => $aid
+					),
+					'PARENT' => 'friends',
+					"FIELDS" => array(
+						'ANSWERID'
+					)
+				)
+			)
+		));
+		$arResult = array();
+		if ($rsTeacherList === false)
+		{
+			//@todo добавить обработку ошибок
+			return array();
+		}
+		while ($arTeacher = $rsTeacherList->fetch_assoc())
+		{
+			$arResult[] = $arTeacher;
+		}
+		return $arResult;
+	}
+
+	public function getTeacherListAll()
+	{
+		$obTableFriends = new Data_Friends();
+		$rsTeacherList = $obTableFriends->select(array(
+			"FIELDS" => array(
+				'ACCEPTED'
+			),
+			'FILTER' => array(
+				'STUDENTID' => $this->id
+			),
+			'JOIN'	 => array(
+				array(
+					'TYPE'	 => 'inner',
+					'TABLE'	 => 'users',
+					'ON'	 => array(
+						'ID' => 'TEACHERID'
+					),
+					'PARENT' => 'friends',
+					'FIELDS' => array(
+						'FIRSTNAME',
+						'SECONDNAME',
+						'ID',
+						'LASTNAME'
+					)
+				)
+			)
+		));
+		$arResult = array();
+		if ($rsTeacherList === false)
+		{
+			//@todo добавить обработку ошибок
+			return array();
+		}
+		while ($arTeacher = $rsTeacherList->fetch_assoc())
+		{
+			$arResult[] = $arTeacher;
+		}
+		return $arResult;
+	}
+
+	public function accept($id)
+	{
+		$obTableFriends = new Data_Friends();
+		$obTableFriends->update(array(
+			"FIELDS" => array(
+				'ACCEPTED' => 1
+			),
+			'FILTER' => array(
+				'TEACHERID'	 => $id,
+				'STUDENTID'	 => $this->id
+			)
+		));
+	}
+
+	/**
+	 * удаление учителя из списка моих учителей
+	 * @param int $id id учителя
+	 */
+	public function del($id)
+	{
+		$obTableFriends = new Data_Friends();
+		$obTableFriends->delete(array(
+			'TEACHERID'	 => $id,
+			'STUDENTID'	 => $this->id
 				)
 		);
+	}
+
+	public function delStudent($id)
+	{
+		$obTableFriends = new Data_Friends();
+		$obTableFriends->delete(array(
+			'STUDENTID'	 => $id,
+			'TEACHERID'	 => $this->id
+				)
+		);
+	}
+
+	public function getStudentsList()
+	{
+		$obTableFriends = new Data_Friends();
+		$rsStudentsList = $obTableFriends->select(array(
+			"FIELDS" => array(
+				'ACCEPTED'
+			),
+			'FILTER' => array(
+				'TEACHERID' => $this->id
+			),
+			'JOIN'	 => array(
+				array(
+					'TYPE'	 => 'inner',
+					'TABLE'	 => 'users',
+					'ON'	 => array(
+						'ID' => 'STUDENTID'
+					),
+					'PARENT' => 'friends',
+					'FIELDS' => array(
+						'FIRSTNAME',
+						'SECONDNAME',
+						'ID',
+						'LASTNAME'
+					)
+				)
+			)
+		));
+		$arResult = array();
+		if ($rsStudentsList === false)
+		{
+			//@todo добавить обработку ошибок
+			return array();
+		}
+		while ($arStudent = $rsStudentsList->fetch_assoc())
+		{
+			$arResult[] = $arStudent;
+		}
+		return $arResult;
 	}
 
 }

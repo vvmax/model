@@ -32,8 +32,8 @@ $arUserInfo = Utils_Currentuser::getInstance()->getUserInfo();
 		<? endif; ?>
 
         <meta charset="UTF-8">
-		<meta name="keywords" content="Логико-смысловая модель,химия" />
-		<meta name="description" content="Cоздание логическо-смысловых моделей по химии" />
+		<meta name="keywords" content="Логико-смысловая модель" />
+		<meta name="description" content="Cоздание логическо-смысловых моделей" />
         <link rel="stylesheet" type="text/css" href="/css/styles.css">
 		<script type="text/javascript" src="/opt/jquery-1.4.3.min.js"></script>
 		<script type="text/javascript" src="/js/useredit.js"></script>

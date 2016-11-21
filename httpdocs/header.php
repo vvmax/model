@@ -4,6 +4,12 @@
 		<li><a href="/">Главная</a></li>
 		<li><a href="models.php">Все тесты</a></li>
 		<? if (Utils_Currentuser::getInstance()->isLogged()): ?>
+			<? if (Utils_Currentuser::getInstance()->isTeacher()): ?>
+				<li><a href="studentssearch.php">Поиск учеников</a></li> 
+				<li><a href="mystudents.php">Ученики</a></li>
+			<? else: ?>
+				<li><a href="myteacherslist.php">Учителя</a></li>
+			<? endif; ?>
 			<li><a href="usermodels.php">Пройденные тесты</a></li> 
 			<li><a href="profile.php">Профиль</a></li>	
 			<li><a href="/?logout=y">Выход</a></li>
