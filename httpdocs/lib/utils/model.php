@@ -33,7 +33,7 @@ class Utils_Model
 			}
 			$answerExist = true;
 		}
-		
+
 		//hhkhkh
 		/* 		if ($answerExist === false)
 		  {
@@ -45,7 +45,7 @@ class Utils_Model
 		$obTableAnswer = new Data_Answer();
 		$rsAnswer = $obTableAnswer->select(
 				array(
-					'FIELDS' => array('MODELID', 'ANSWER','USERID'),
+					'FIELDS' => array('MODELID', 'ANSWER', 'USERID'),
 					'FILTER' => array('ID' => $answerId)
 		));
 		if ($rsAnswer === FALSE)
@@ -53,7 +53,7 @@ class Utils_Model
 			return FALSE;
 		}
 		$arAnswer = $rsAnswer->fetch_assoc();
-		if ($arAnswer == false || 
+		if ($arAnswer == false ||
 				($CanLook === false && Utils_Currentuser::getInstance()->GetId() != $arAnswer['USERID'] ))
 		{
 			ob_end_clean();
@@ -109,6 +109,234 @@ class Utils_Model
 			"MODEL"		 => $arModel,
 			"CATEGORIES" => $arCategories
 		);
+	}
+
+	public static function save($arData)
+	{
+		if (isset($arData['NAME']) && !empty($arData['NAME']))
+		{
+			$obTableModel = new Data_Model();
+
+			$id = $obTableModel->insert(array(
+				'FIELDS' => array(
+					'NAME'			 => $arData['NAME'],
+					'DESCRIPTION'	 => $arData['DESCRIPTION'],
+					'OBJECT'		 => $arData['OBJECT'],
+					'AUTHORID'		 => Utils_Currentuser::getInstance()->getId()
+				)
+			));
+			if ($id === false)
+			{
+				return false;
+			}
+			$obTableCategory = new Data_Category();
+			foreach ($arData['CATEGORY'] as $arCategory)
+			{
+				$cId = $obTableCategory->insert(array(
+					'FIELDS' => array(
+						'MODELID'	 => $id,
+						'NAME'		 => $arCategory['NAME']
+					)
+				));
+				if ($cId === false)
+				{
+					break;
+				}
+				$obTableElement = new Data_Element();
+				if (!empty($arCategory['ELEMENT']))
+				{
+					foreach ($arCategory['ELEMENT'] as $element)
+					{
+						$obTableElement->insert(array(
+							'FIELDS' => array(
+								'MODELID'	 => $id,
+								'CATEGORYID' => $cId,
+								'NAME'		 => $element
+							)
+						));
+					}
+				}
+			}
+			return $id;
+		}
+		return false;
+	}
+
+	public function update($arOption)
+	{
+
+		if (isset($arOption['NAME']) && !empty($arOption['NAME']) && isset($arOption['ID']) && $arOption['ID'] > 0)
+		{
+			$obTableModel = new Data_Model();
+			$rsModel = $obTableModel->select(array(
+				'FIELDS' => array('ID'),
+				'FILTER' => array(
+					'ID'		 => $arOption['ID'],
+					'AUTHORID'	 => Utils_Currentuser::getInstance()->getId())
+			));
+			$arModel = $rsModel->fetch_assoc();
+			if (!$arModel)
+			{
+				return false;
+			}
+			$id = $obTableModel->update(array(
+				'FIELDS' => array(
+					'NAME'			 => $arOption['NAME'],
+					'DESCRIPTION'	 => $arOption['DESCRIPTION'],
+					'OBJECT'		 => $arOption['OBJECT']
+				),
+				'FILTER' => array(
+					'ID' => $arOption['ID']
+				)
+					)
+			);
+			if ($id !== false)
+			{
+				$obTableElement = new Data_Element;
+				$obTableCategory = new Data_Category;
+				foreach ($arOption['CATEGORY'] as $key => $arCategory)
+				{
+					$rsCategory = $obTableCategory->select(array(
+						'FIELDS' => array('ID'),
+						'FILTER' => array(
+							'MODELID'	 => $arOption['ID'],
+							'ID'		 => $key
+						)
+					));
+					$arCategories = $rsCategory->fetch_assoc();
+					if (!$arCategories)
+					{
+
+						$res = $obTableCategory->insert(array(
+							'FIELDS' => array(
+								'NAME'		 => $arCategory['NAME'],
+								'MODELID'	 => $arOption['ID']
+							)
+						));
+						$catId = $res;
+					}
+					else
+					{
+						$res = $obTableCategory->update(array(
+							'FIELDS' => array('NAME' => $arCategory['NAME']),
+							'FILTER' => array(
+								'MODELID'	 => $arOption['ID'],
+								'ID'		 => $key
+							)
+						));
+						$catId = $key;
+					}
+					if ($res !== false)
+					{
+
+						if (!empty($arCategory['ELEMENT']))
+						{
+							foreach ($arCategory['ELEMENT'] as $uKey => $Element)
+							{
+								$rsElement = $obTableElement->select(array(
+									'FIELDS' => array('ID'),
+									'FILTER' => array(
+										'MODELID'	 => $arOption['ID'],
+										'ID'		 => $uKey,
+										'CATEGORYID' => $catId
+									)
+								));
+								$arElements = $rsElement->fetch_assoc();
+								if (!$arElements)
+								{
+									$obTableElement->insert(array(
+										'FIELDS' => array(
+											'NAME'		 => $Element,
+											'MODELID'	 => $arOption['ID'],
+											'CATEGORYID' => $catId
+										)
+									));
+								}
+								else
+								{
+									$obTableElement->update(array(
+										'FIELDS' => array('NAME' => $Element),
+										'FILTER' => array(
+											'MODELID'	 => $arOption['ID'],
+											'CATEGORYID' => $catId,
+											'ID'		 => $uKey
+										)
+									));
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	public static function deleteCategory($arOptions)
+	{
+		if (!isset($arOptions['ID']) || !isset($arOptions['catid']) || intval($arOptions['ID']) <= 0 || intval($arOptions['catid']) <= 0)
+		{
+			return false;
+		}
+		$obTableModel = new Data_Model();
+		$check = $obTableModel->select(array(
+			'FIELDS' => array('ID'),
+			'FILTER' => array(
+				'ID'		 => $arOptions['ID'],
+				'AUTHORID'	 => Utils_Currentuser::getInstance()->getId()
+			)
+		));
+		if ($check->field_count !== 1)
+		{
+			return false;
+		}
+		$obTableCategory = new Data_Category();
+		$res = $obTableCategory->delete(array(
+			'MODELID'	 => $arOptions['ID'],
+			'ID'		 => $arOptions['catid']
+		));
+		return ($res !== false);
+	}
+
+	public static function deleteElement($arOptions)
+	{
+		if (!isset($arOptions['ID']) || !isset($arOptions['catid']) || intval($arOptions['ID']) <= 0 || intval($arOptions['catid']) <= 0 || !isset($arOptions['elid']) || intval($arOptions['elid']) <= 0)
+		{
+			return false;
+		}
+		$obTableModel = new Data_Model();
+		$check = $obTableModel->select(array(
+			'FIELDS' => array('ID'),
+			'FILTER' => array(
+				'ID'		 => $arOptions['ID'],
+				'AUTHORID'	 => Utils_Currentuser::getInstance()->getId()
+			)
+		));
+		if ($check->field_count !== 1)
+		{
+			return false;
+		}
+		$obTableElement = new Data_Element();
+		$res = $obTableElement->delete(array(
+			'MODELID'	 => $arOptions['ID'],
+			'CATEGORYID' => $arOptions['catid'],
+			'ID'		 => $arOptions['elid']
+		));
+		return ($res !== false);
+	}
+
+	public static function deleteModel($arOptions)
+	{
+		if (!isset($arOptions['ID']) || intval($arOptions['ID']) <= 0)
+		{
+			return false;
+		}
+		$obTableModel = new Data_Model();
+		$res = $obTableModel->delete(array(
+			'ID'		 => $arOptions['ID'],
+			'AUTHORID'	 => Utils_Currentuser::getInstance()->getId()
+		));
+		return ($res !== false);
 	}
 
 }

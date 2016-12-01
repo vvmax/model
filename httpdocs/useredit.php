@@ -11,21 +11,19 @@ If (isset($_REQUEST['usertype']))
 	if (Utils_Currentuser::getInstance()->isLogged())
 	{
 		$arRes = $obUser->updateUser($_REQUEST);
+		$check = $arRes;
 	}
 	else
 	{
 		$arRes = $obUser->addUser($_REQUEST);
 	}
-
-
-	$arRes = $obUser->addUser($_REQUEST);
 }
 $arUserInfo = Utils_Currentuser::getInstance()->getUserInfo();
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-		<? if (Utils_Currentuser::getInstance()->isLogged()): ?>
+<? if (Utils_Currentuser::getInstance()->isLogged()): ?>
 			<title>Редактирование профиля</title>
 		<? else: ?>
 			<title>Регистрация</title>
@@ -40,34 +38,37 @@ $arUserInfo = Utils_Currentuser::getInstance()->getUserInfo();
     </head>
     <body>
         <div id="wrap">
-			<?php include 'header.php'; ?>
+<?php include 'header.php'; ?>
             <section>
-				<? if (Utils_Currentuser::getInstance()->isLogged()): ?>
+			<? if (Utils_Currentuser::getInstance()->isLogged()): ?>
 					<h1>Редактирование профиля</h1>
 				<? else: ?>
 					<h1>Регистрация</h1>
 				<? endif; ?>
+				<? if (isset($check) && ($check != false)): ?>
+					<p><b>Профиль сохранен</b></p>
+				<? endif; ?>
 				<form action="/useredit.php" method="POST">
 					<div class="formrow singlerow" >
-						<? if (Utils_Currentuser::getInstance()->isLogged()): ?>
+<? if (Utils_Currentuser::getInstance()->isLogged()): ?>
 							<p><?= $arUserInfo['USERTYPE_NAME'] ?></p>
-							<input type="hidden" value="<?=$arUserInfo['USERTYPEID']?>" name="usertype">
-						<? else: ?>
+							<input type="hidden" value="<?= $arUserInfo['USERTYPEID'] ?>" name="usertype">
+<? else: ?>
 							<label>Ученик</label>
 							<input checked type="radio" name="usertype" value="<?= Data_Usertype::USER_TYPE_STUDENT ?>">
 							<label>Учитель</label>
 							<input type="radio" name="usertype" value="<?= Data_Usertype::USER_TYPE_TEACHER ?>">
-						<? endif; ?>
+<? endif; ?>
 					</div>
 					<DIV class="formrow">
 						<label>Имя</label>
 						<input type="text" name="firstname" value='<?= $arUserInfo['FIRSTNAME'] ?>'>
-						<? if (isset($arRes['firstname'])): ?><span class="error"><?= $arRes['firstname'] ?></span><? endif; ?>
+<? if (isset($arRes['firstname'])): ?><span class="error"><?= $arRes['firstname'] ?></span><? endif; ?>
 					</div>
 					<DIV class="formrow">
 						<label>Фамилия</label>
 						<input type="text" name="secondname" value='<?= $arUserInfo['SECONDNAME'] ?>'>
-						<? if (isset($arRes['secondname'])): ?><span class="error"><?= $arRes['secondname'] ?></span><? endif; ?>
+<? if (isset($arRes['secondname'])): ?><span class="error"><?= $arRes['secondname'] ?></span><? endif; ?>
 					</div>
 					<DIV class="formrow">
 						<label>Отчество</label>
@@ -76,38 +77,38 @@ $arUserInfo = Utils_Currentuser::getInstance()->getUserInfo();
 					<DIV class="formrow">
 						<label>Логин</label>
 						<input type="text" name="login" value='<?= $arUserInfo['LOGIN'] ?>'>
-						<? if (isset($arRes['login'])): ?><span class="error"><?= $arRes['login'] ?></span><? endif; ?>			
+<? if (isset($arRes['login'])): ?><span class="error"><?= $arRes['login'] ?></span><? endif; ?>			
 					</div>
 					<DIV class="formrow">
 						<label>    
-							<? if (Utils_Currentuser::getInstance()->isLogged()): ?>
+<? if (Utils_Currentuser::getInstance()->isLogged()): ?>
 								Новый пароль<span class="note">(Заполнять если необходимо сменить)</span>
 							<? else: ?>
 								Пароль
 							<? endif; ?>
 						</label>
 						<input type="password" name="password">
-						<? if (isset($arRes['password'])): ?><span class="error"><?= $arRes['password'] ?></span><? endif; ?>
+<? if (isset($arRes['password'])): ?><span class="error"><?= $arRes['password'] ?></span><? endif; ?>
 					</div>
 					<DIV class="formrow">
 						<label>Подтверждение пароля</label>
 						<input type="password" name="password2">
-						<? if (isset($arRes['password2'])): ?><span class="error"><?= $arRes['password2'] ?></span><? endif; ?>			
+<? if (isset($arRes['password2'])): ?><span class="error"><?= $arRes['password2'] ?></span><? endif; ?>			
 					</div>
 					<DIV class="formrow">
 						<label>Город</label>
 						<select name="town" id="town">
 							<option value="-1" >   </option>
-							<? foreach ($arTowns as $arValue): ?>
+<? foreach ($arTowns as $arValue): ?>
 								<option 
 								<? if ($arUserInfo['TOWNID'] == $arValue['ID']): ?>
 										selected="selected"
-									<? endif; ?>
+								<? endif; ?>
 									value="<?= $arValue['ID'] ?>"
 									>
-										<?= $arValue['NAME'] ?>
+	<?= $arValue['NAME'] ?>
 								</option>
-							<? endforeach; ?>
+									<? endforeach; ?>
 						</select>
 						<input type="text" name="newtown">
 					</div>
@@ -115,22 +116,22 @@ $arUserInfo = Utils_Currentuser::getInstance()->getUserInfo();
 						<label>Школа</label>
 						<select 
 							name="school" 
-							<? if (!isset($arUserInfo['SCHOOLID'])): ?>
+<? if (!isset($arUserInfo['SCHOOLID'])): ?>
 								style="display:none"
 							<? endif; ?>
 							id="school"
 							>
 							<option value="-1">   </option>
-							<? foreach ($arSchools as $arValue): ?>
+<? foreach ($arSchools as $arValue): ?>
 								<option 
 								<? if ($arUserInfo['SCHOOLID'] == $arValue['ID']): ?>
 										selected="selected"
-									<? endif; ?>
+								<? endif; ?>
 									value="<?= $arValue['ID'] ?>"
 									>
-										<?= $arValue['NAME'] ?>
+	<?= $arValue['NAME'] ?>
 								</option>
-							<? endforeach; ?>
+									<? endforeach; ?>
 						</select>
 						<input type="text" name="newschool">
 
@@ -142,7 +143,7 @@ $arUserInfo = Utils_Currentuser::getInstance()->getUserInfo();
 					<button type="submit" >Сохранить</button>
 				</form>
             </section>
-			<?php include 'footer.php'; ?>
+<?php include 'footer.php'; ?>
         </div>
     </body>
 </html>

@@ -16,7 +16,6 @@ if (isset($_REQUEST['OBJECT'])) {
 	}
     }
 }
-//Utils_Util::printDebug($_REQUEST);
 ?>
 
 <!DOCTYPE html>

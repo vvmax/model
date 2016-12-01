@@ -21,4 +21,5 @@ class Data_Usertype {
      * Тип УЧЕНИК
      */
     const USER_TYPE_STUDENT=20;
+	
 }

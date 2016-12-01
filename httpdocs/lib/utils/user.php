@@ -118,7 +118,7 @@ class Utils_User
 				}
 			}
 			$obUserTable = new Data_Users();
-			$obUserTable->insert(array('FIELDS' => array(
+			$res = $obUserTable->insert(array('FIELDS' => array(
 					'LOGIN'		 => $arRequest['login'],
 					'PASSWORD'	 => $this->codec($arRequest['password']),
 					'SCHOOLID'	 => $schoolId,
@@ -129,7 +129,11 @@ class Utils_User
 					'USERTYPEID' => $arRequest['usertype'],
 					'TOWNID'	 => $townId
 			)));
-		}
+			if ($res !== false)
+			{
+				
+			}
+		} 
 		return $arError;
 	}
 

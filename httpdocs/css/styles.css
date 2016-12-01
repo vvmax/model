@@ -123,12 +123,12 @@ button, .button {
   margin: 0;
   padding: 0;
   /*&:after{
-      content:'';
-      border:8px solid $textBackgroudColor;
-      border-left-color:#333;
-      position:absolute;
-      top:50%;
-      right:$baseMargin;
+  	content:'';
+  	border:8px solid $textBackgroudColor;
+  	border-left-color:#333;
+  	position:absolute;
+  	top:50%;
+  	right:$baseMargin;
   }*/ }
   .list li {
     position: relative;
@@ -136,6 +136,7 @@ button, .button {
     margin-bottom: 10px;
     background: #FFEDDE; }
     .list li a {
+      min-height: 50px;
       padding: 5px;
       display: block;
       text-decoration: none;
@@ -161,6 +162,10 @@ button, .button {
         padding: 0;
         margin: 0;
         text-align: center; }
+    .list li div a {
+      min-height: auto;
+      background: none;
+      display: inline-block; }
 
 .elements {
   width: 530px;
@@ -180,10 +185,16 @@ button, .button {
       height: 20px;
       line-height: 20px;
       font-size: 12px; }
+  .elements .delete {
+    text-decoration: none;
+    font-size: 20px; }
 
 .miniImage {
   width: 400px;
   float: right; }
+
+.simplea {
+  text-decoration: none; }
 
 .imagebox {
   position: fixed;

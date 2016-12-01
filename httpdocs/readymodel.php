@@ -29,6 +29,7 @@ elseif (isset($_REQUEST['OBJECT']) && isset($_REQUEST['ELEMENTS']))
 {
 	//сохранение нового ответа
 	$aid = $obTableAnswer->addAnswer($_REQUEST);
+	$_REQUEST['CODE'] = $obTableAnswer->getCode($aid);
 }
 elseif (isset($_REQUEST['CODE']))
 {

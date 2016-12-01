@@ -156,7 +156,7 @@ class Utils_Currentuser extends Utils_User
 		}
 		$obUserTable = new Data_Users();
 		$rsUser = $obUserTable->select(array(
-			'FIELDS' => array('ID', 'USERTYPEID'),
+			'FIELDS' => array('ID', 'USERTYPEID','CANMAKE'),
 			'FILTER' => array(
 				'LOGIN'		 => $arRequest['login'],
 				'PASSWORD'	 => $this->codec($arRequest['password'])
@@ -170,6 +170,7 @@ class Utils_Currentuser extends Utils_User
 				$secret = $this->codec($this->id . date('YmdHis'));
 				$_SESSION['secret'] = $secret;
 				$_SESSION['USERTYPEID'] = $arUser['USERTYPEID'];
+				$_SESSION['CANMAKE'] = $arUser['CANMAKE'];
 				setcookie('history', $secret, time() + 2678400);
 				return true;
 			}
@@ -182,6 +183,10 @@ class Utils_Currentuser extends Utils_User
 		return $_SESSION['USERTYPEID'] == Data_Usertype::USER_TYPE_TEACHER;
 	}
 
+	public function isMaker()
+	{
+		return $_SESSION['CANMAKE'] == 1;
+	}
 	public function isLogged()
 	{
 		return isset($_SESSION['secret']);

@@ -35,18 +35,18 @@ header{
         padding: 0 $baseMargin/4;
         list-style: none;
         li{
-           line-height: $panelHeight;
-           display: inline-block;
-           a{
-               display: inline-block;
-               font-size: $bigFontSize;
-               text-decoration: none;
-               padding: 0 $baseMargin;
-	       color:$backgroundMainColor;
-               &:hover{
-                  background: $colorHeaderLinksH;
-               }
-           }
+			line-height: $panelHeight;
+			display: inline-block;
+			a{
+				display: inline-block;
+				font-size: $bigFontSize;
+				text-decoration: none;
+				padding: 0 $baseMargin;
+				color:$backgroundMainColor;
+				&:hover{
+					background: $colorHeaderLinksH;
+				}
+			}
         }
     }
 }
@@ -90,7 +90,7 @@ h1{
 h1,h2{
 	color:$colorFontLink;
 	text-align: center; 
-    }
+}
 h2{
     font-size: 22px;    
 }
@@ -105,9 +105,9 @@ table{
     border: 2px solid black;
     margin:$baseMargin;
     td{
-       border: 2px solid black;
-       padding: $baseMargin;
-       text-align: center;
+		border: 2px solid black;
+		padding: $baseMargin;
+		text-align: center;
     }
     input{
         background: transparent;
@@ -147,8 +147,9 @@ button,.button{
 		position: relative;
         display:block;
         margin-bottom:2*$baseMargin;
-	background:$backgroundLi;
+		background:$backgroundLi;
         a{
+			min-height: 50px;
             padding:$baseMargin;
             display:block;
             text-decoration: none;
@@ -178,20 +179,27 @@ button,.button{
 				margin: 0;
 				text-align: center;
 			}
-	}
+		}
+		div{
+			a{
+				min-height: auto;
+				background: none;
+				display: inline-block;
+			}
+		}
     }
 
-            /*&:after{
-                content:'';
-                border:8px solid $textBackgroudColor;
-                border-left-color:#333;
-                position:absolute;
-                top:50%;
-                right:$baseMargin;
-            }*/
-        
-        
-	
+	/*&:after{
+		content:'';
+		border:8px solid $textBackgroudColor;
+		border-left-color:#333;
+		position:absolute;
+		top:50%;
+		right:$baseMargin;
+	}*/
+
+
+
 }
 .elements{
     width:530px;
@@ -206,7 +214,7 @@ button,.button{
         width: 300px;
     }
     tr:nth-child(odd) {
-	    background-color: $backgroundLi;
+		background-color: $backgroundLi;
     }
 	&.searchresult{
 		width: 750px;
@@ -217,11 +225,21 @@ button,.button{
 			font-size: 12px;
 		}
 	}
+	.delete{
+	text-decoration: none;
+	font-size: 20px;
+	}
 
 }
 .miniImage{
     width: 400px;
     float: right;    
+}
+.simplea{
+	text-decoration: none;
+	&:hover{
+		
+	}
 }
 .imagebox{
     position: fixed;
@@ -236,7 +254,7 @@ button,.button{
 .standartImage{
     text-align: center;
     img{
-	max-width: 40%;
+		max-width: 40%;
     }
 }
 .author{
@@ -247,13 +265,13 @@ button,.button{
 .imgmenu{
     text-align:center;
     a{ 
-	color:$colorFontLink;
-	display: inline-block;
+		color:$colorFontLink;
+		display: inline-block;
         font-size: $bigFontSize;
         text-decoration: none;
         padding: 0 $baseMargin;
-	&:hover{
-	    color:$headerColor;
+		&:hover{
+			color:$headerColor;
         }
     }
 }
@@ -261,10 +279,10 @@ button,.button{
     float: right;
     img{
         border: 1px solid $colorHeaderLinksH;
-	cursor:pointer;
+		cursor:pointer;
     }
     a{
-	margin-top: 2*$baseMargin;
+		margin-top: 2*$baseMargin;
     }
 }
 .error{
@@ -273,32 +291,32 @@ button,.button{
 }
 @media print{
     h1,h2,table,a,footer,header,h3,.imgmenu{
-	display: none;
+		display: none;
     }
     .miniImage{
-	width:auto;
-	max-width: 100%;
-	max-height: 170mm;
-	float:none;
+		width:auto;
+		max-width: 100%;
+		max-height: 170mm;
+		float:none;
     }
     .textimg{
-	float:none;
-	img{
-	    border:none;
-	}
+		float:none;
+		img{
+			border:none;
+		}
     }
     #wrap{
-	box-shadow: none;
-	padding: 0;
-	margin: 0;
-	background-color:$backgroundMainColor;
+		box-shadow: none;
+		padding: 0;
+		margin: 0;
+		background-color:$backgroundMainColor;
     }
     section{
-	padding: 0;
-	text-align: center;
+		padding: 0;
+		text-align: center;
     }
     body{
-	background-color: $backgroundMainColor;
+		background-color: $backgroundMainColor;
     }
 }
 .formrow{
@@ -306,19 +324,19 @@ button,.button{
         width: 150px;
     }
     label{
-	display: inline-block;
-	width: 150px;
+		display: inline-block;
+		width: 150px;
     }
     select{
-	width: 100px;
+		width: 100px;
     }
     .short{
-	width: 48px;
+		width: 48px;
     } 
 }
 .singlerow{
     input,label{
-	width: auto;
+		width: auto;
     }
 }
 a,button{

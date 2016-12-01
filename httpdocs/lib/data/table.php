@@ -16,6 +16,7 @@ class Data_Table
 	const FIELD_TYPE_DATE = 2;
 	CONST FIELD_TYPE_GENERATE = 3;
 	CONST FIELD_TYPE_CLASS = 4;
+	CONST FIELD_TYPE_BOOLEAN = 5;
 
 	/**
 	 * Имя таблицы
@@ -83,6 +84,7 @@ class Data_Table
 		$arJoin = array();
 		if (isset($arOption['JOIN']) && !empty($arOption['JOIN']))
 		{
+
 			/**
 			 * @todo добавить проверку наличия полй и таблиц
 			 */
@@ -130,7 +132,10 @@ class Data_Table
 			$query.= " where " . implode(' and ', $arWhere);
 		}
 		$result = $db->query($query);
-		$this->arLastError[] = $db->error;
+		if ($result !== false)
+		{
+			$this->arLastError[] = $db->error;
+		}
 		return $result;
 	}
 
@@ -195,6 +200,7 @@ class Data_Table
 
 	public function update($arOption)
 	{
+
 		if (!isset($arOption['FIELDS']) || empty($arOption['FIELDS']))
 		{
 			$this->arLastError[] = 'не переданы поля';
@@ -225,7 +231,14 @@ class Data_Table
 			$query.= " where " . implode(' and ', $arWhere);
 		}
 		$result = $db->query($query);
-		$this->arLastError[] = $db->error;
+		if ($result === false)
+		{
+			$this->arLastError[] = $db->error;
+		}
+		//else
+		//{
+		//	$result = $db->affected_rows;
+		//}
 		return $result;
 	}
 
@@ -283,6 +296,11 @@ class Data_Table
 							$arWhere[] = $this->tableName . '.' . "$fieldName='$fieldValue'";
 						}
 						break;
+					case self::FIELD_TYPE_BOOLEAN:
+						$fieldValue = ($fieldValue) ? 1 : 0;
+						$arWhere[] = $this->tableName . '.' . "$fieldName=$fieldValue";
+						break;
+
 					default :
 						$this->arLastError[] = 'Неизвестный тип поля ' . $fieldName;
 						return false;
@@ -321,6 +339,9 @@ class Data_Table
 				case self::FIELD_TYPE_GENERATE:
 					$strIndex = date("YmdHis") . mt_rand(0, 1000000000);
 					$arValue = "'" . md5($strIndex) . "'";
+					break;
+				case self::FIELD_TYPE_BOOLEAN:
+					$arValue = ($arValue) ? 1 : 0;
 					break;
 				default:
 					continue;
