@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
 		<meta name="keywords" content="Логико-смысловая модель" />
 		<meta name="description" content="Cоздание логико-смысловых моделей" />
+		<meta name="yandex-verification" content="803f9fc37441e4cc" />
         <link rel="stylesheet" type="text/css" href="/css/styles.css">
 		<link rel="stylesheet" type="text/css" href="/opt/fancybox/jquery.fancybox-1.3.4.css">
 		<script type="text/javascript" src="/opt/jquery-1.4.3.min.js"></script>
