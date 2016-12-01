@@ -205,6 +205,7 @@ button, .button {
   font-size: 10px; }
 
 .imgmenu {
+  clear: both;
   text-align: center; }
   .imgmenu a {
     color: #266363;
@@ -290,3 +291,5 @@ a, button {
 .smalltable {
   width: 400px;
   margin-top: 15px; }
+
+/*# sourceMappingURL=styles.css.map */
