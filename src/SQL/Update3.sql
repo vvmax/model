@@ -1,0 +1,1 @@
+alter table users add CANMAKE int default 0 not null;

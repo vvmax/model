@@ -1,0 +1,1 @@
+alter table model add AUTHORID int default 0 not null;
