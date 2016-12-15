@@ -133,7 +133,7 @@ class Utils_User
 			{
 				
 			}
-		} 
+		}
 		return $arError;
 	}
 
@@ -329,7 +329,7 @@ class Utils_User
 							'TYPE'	 => '',
 							'TABLE'	 => 'answeraccess',
 							'ON'	 => array(
-								'#TEACHERID'	 => Utils_Currentuser::getInstance()->getId(),
+								'#TEACHERID' => Utils_Currentuser::getInstance()->getId(),
 								'ANSWERID'	 => 'ID'
 							),
 							'PARENT' => 'answer',
@@ -346,6 +346,16 @@ class Utils_User
 			$arResult[] = $arAnswer;
 		}
 		return $arResult;
+	}
+
+	public function deleteAnswer($id,$uid)
+	{
+		$obTableAnswer = new Data_Answer();
+		return $obTableAnswer->delete(array(
+					'ID'	 => $id,
+					'USERID' => $uid
+						)
+		);
 	}
 
 }

@@ -140,6 +140,12 @@ $arUserInfo = Utils_Currentuser::getInstance()->getUserInfo();
 						<label>Класс</label>
 						<input type="text" name="form" value='<?= $arUserInfo['FORM'] ?>'>
 					</div>
+					<?
+					/**
+					 * @todo исправить вывод сообщений об ошибках
+					 * (не выводит в некоторых случаях)
+					 */
+					?>
 					<button type="submit" >Сохранить</button>
 				</form>
             </section>
