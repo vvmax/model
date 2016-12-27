@@ -148,21 +148,9 @@ button,.button{
         display:block;
         margin-bottom:2*$baseMargin;
 		background:$backgroundLi;
-        a{
-			min-height: 50px;
-            padding:$baseMargin;
-            display:block;
-            text-decoration: none;
-            position:relative;
-			color:$colorFontLink;
-            background:transparent url(../images/row.png) 100% 50% no-repeat;
-            span{
-                display:block;
-            }
-            span:first-child{
-                font-weight:bold;
-            }
-            &:hover{
+		a{
+			background:transparent url(../images/row.png) 100% 50% no-repeat;
+			&:hover{
                 box-shadow:0 0 10px 2px #ccc;
             }
 			&.delete{
@@ -177,8 +165,22 @@ button,.button{
 				font-size: 20px;
 				padding: 0;
 				margin: 0;
-				text-align: center;
+				text-align: center; 
 			}
+		}
+        a, div.model{
+			min-height: 50px;
+            padding:$baseMargin;
+            display:block;
+            text-decoration: none;
+            position:relative;
+			color:$colorFontLink;
+            span{
+                display:block;
+            }
+            span:first-child{
+                font-weight:bold;
+            }
 		}
 		div{
 			a{
@@ -201,6 +203,9 @@ button,.button{
 
 
 }
+.centered{
+	text-align: center;
+}
 .elements{
     width:530px;
     border: 1px solid $colorHeaderLinksH;
@@ -212,6 +217,9 @@ button,.button{
     }
     th{
         width: 300px;
+		&.tonkyi{
+			width: 1%;
+		}
     }
     tr:nth-child(odd) {
 		background-color: $backgroundLi;
@@ -226,8 +234,8 @@ button,.button{
 		}
 	}
 	.delete{
-	text-decoration: none;
-	font-size: 20px;
+		text-decoration: none;
+		font-size: 20px;
 	}
 
 }
@@ -238,7 +246,7 @@ button,.button{
 .simplea{
 	text-decoration: none;
 	&:hover{
-		
+
 	}
 }
 .imagebox{

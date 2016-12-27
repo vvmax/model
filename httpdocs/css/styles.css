@@ -136,17 +136,7 @@ button, .button {
     margin-bottom: 10px;
     background: #FFEDDE; }
     .list li a {
-      min-height: 50px;
-      padding: 5px;
-      display: block;
-      text-decoration: none;
-      position: relative;
-      color: #266363;
       background: transparent url(../images/row.png) 100% 50% no-repeat; }
-      .list li a span {
-        display: block; }
-      .list li a span:first-child {
-        font-weight: bold; }
       .list li a:hover {
         box-shadow: 0 0 10px 2px #ccc; }
       .list li a.delete {
@@ -162,10 +152,24 @@ button, .button {
         padding: 0;
         margin: 0;
         text-align: center; }
+    .list li a, .list li div.model {
+      min-height: 50px;
+      padding: 5px;
+      display: block;
+      text-decoration: none;
+      position: relative;
+      color: #266363; }
+      .list li a span, .list li div.model span {
+        display: block; }
+      .list li a span:first-child, .list li div.model span:first-child {
+        font-weight: bold; }
     .list li div a {
       min-height: auto;
       background: none;
       display: inline-block; }
+
+.centered {
+  text-align: center; }
 
 .elements {
   width: 530px;
@@ -176,6 +180,8 @@ button, .button {
     border: none; }
   .elements th {
     width: 300px; }
+    .elements th.tonkyi {
+      width: 1%; }
   .elements tr:nth-child(odd) {
     background-color: #FFEDDE; }
   .elements.searchresult {

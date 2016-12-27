@@ -131,6 +131,15 @@ class Data_Table
 		{
 			$query.= " where " . implode(' and ', $arWhere);
 		}
+		if (isset ($arOption['ORDER']) && count($arOption['ORDER'])>0)
+		{
+			$arOrder=array();
+			foreach ($arOption['ORDER'] as $key=>$value)
+			{
+				$arOrder[]=$key . ' ' . $value;
+			}
+			$query.=' order by ' . implode(',', $arOrder);
+		}
 		$result = $db->query($query);
 		if ($result !== false)
 		{

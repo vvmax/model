@@ -27,8 +27,8 @@ page = {
 	onAddElement: function () {
 		var text, row = $(this).closest('tr');
 		text = '<tr class = "jselement">' +
-				'<td colspan="2">' +
-				'<input name="CATEGORY[' + row.data('index') + '][ELEMENT][]" type="text" placeholder="Название элемента">' +
+				'<td colspan="3">' +
+				'<input  name="CATEGORY[' + row.data('index') + '][ELEMENT][]" type="text" placeholder="Название элемента">' +
 				'</td>' +
 				'<td>' +
 				'<a class = "jsdeletenew delete" href="javascript: void(0);"> &times; </a>' +
@@ -39,6 +39,9 @@ page = {
 	onAddCategory: function () {
 		var text, row = $(this).closest('tr');
 		text = '<tr class="jscategory" data-index="new' + page.categoryCount + '">' +
+				'<td>'+
+				'<input class="centered" type="text" value="0" name="CATEGORY[new' + page.categoryCount + '][SORT]" size="1">'+
+				'</td>'+
 				'<td>' +
 				'<input name="CATEGORY[new' + page.categoryCount + '][NAME]" type="text" placeholder="Ветвь схемы">' +
 				'</td>' +

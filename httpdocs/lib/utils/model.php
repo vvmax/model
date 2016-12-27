@@ -88,7 +88,12 @@ class Utils_Model
 			'FIELDS' => array('NAME', 'ID'),
 			'FILTER' => array(
 				'MODELID' => $arAnswer['MODELID']
-		)));
+			),
+			'ORDER'	 => array(
+				'SORT'	 => 'ASC',
+				'ID'	 => 'ASC'
+			)
+		));
 		$arCategories = array();
 		while ($arRow = $rsCategory->fetch_assoc())
 		{
@@ -183,6 +188,10 @@ class Utils_Model
 			'FIELDS' => array('NAME', 'ID'),
 			'FILTER' => array(
 				'MODELID' => $arAnswer['MODELID']
+			),
+			'ORDER'	 => array(
+				'SORT'	 => 'ASC',
+				'ID'	 => 'ASC'
 		)));
 		$arCategories = array();
 		while ($arRow = $rsCategory->fetch_assoc())
@@ -230,7 +239,8 @@ class Utils_Model
 				$cId = $obTableCategory->insert(array(
 					'FIELDS' => array(
 						'MODELID'	 => $id,
-						'NAME'		 => $arCategory['NAME']
+						'NAME'		 => $arCategory['NAME'],
+						'SORT'		 => $arCategory['SORT']
 					)
 				));
 				if ($cId === false)
@@ -305,7 +315,8 @@ class Utils_Model
 						$res = $obTableCategory->insert(array(
 							'FIELDS' => array(
 								'NAME'		 => $arCategory['NAME'],
-								'MODELID'	 => $arOption['ID']
+								'MODELID'	 => $arOption['ID'],
+								'SORT'		 => $arCategory['SORT']
 							)
 						));
 						$catId = $res;
@@ -313,7 +324,10 @@ class Utils_Model
 					else
 					{
 						$res = $obTableCategory->update(array(
-							'FIELDS' => array('NAME' => $arCategory['NAME']),
+							'FIELDS' => array(
+								'NAME'	 => $arCategory['NAME'],
+								'SORT'	 => $arCategory['SORT']
+							),
 							'FILTER' => array(
 								'MODELID'	 => $arOption['ID'],
 								'ID'		 => $key
@@ -425,17 +439,18 @@ class Utils_Model
 		return self::deleteUserModel($arOptions, Utils_Currentuser::getInstance()->getId());
 	}
 
-	public static function deleteUserModel($arOptions,$uid=0)
+	public static function deleteUserModel($arOptions, $uid = 0)
 	{
 		if (!isset($arOptions['ID']) || intval($arOptions['ID']) <= 0)
 		{
 			return false;
 		}
-		$arFilter=array(
-			'ID'		 => $arOptions['ID']
+		$arFilter = array(
+			'ID' => $arOptions['ID']
 		);
-		if ($uid > 0) {
-			$arFilter['AUTHORID'] = $uid; 
+		if ($uid > 0)
+		{
+			$arFilter['AUTHORID'] = $uid;
 		};
 		$obTableModel = new Data_Model();
 		$res = $obTableModel->delete($arFilter);

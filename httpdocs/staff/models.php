@@ -27,7 +27,7 @@ if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'modeldel')
 					while ($arRow = $rsModels->fetch_assoc()):
 						?> 
 						<li>
-							<a href="model.php?ID=<?= $arRow['ID'] ?>" ><span><?= $arRow['NAME'] ?></span><span><?= $arRow['DESCRIPTION'] ?></span></a>
+							<div class="model"><span><?= $arRow['NAME'] ?></span><span><?= $arRow['DESCRIPTION'] ?></span></div>
 								<div class="tools">
 									<a href="models.php?action=modeldel&ID=<?= $arRow['ID'] ?>">Удалить</a>
 								</div>

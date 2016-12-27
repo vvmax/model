@@ -6,7 +6,6 @@ if(isset($_REQUEST['DID']) && intval($_REQUEST['DID'])>0)
 	$obUser->deleteAnswer($_REQUEST['DID'],$_REQUEST['ID']);
 }
 $arAnswers=Utils_Currentuser::getInstance()->getAnswers($_REQUEST['ID']);
-Utils_Util::printDebug($arAnswers);
 ?>
 <!DOCTYPE html>
 <html>

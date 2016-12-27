@@ -264,7 +264,6 @@ class Utils_Currentuser extends Utils_User
 				)
 		);
 		$arResult = array();
-		Utils_Util::printDebug($rsAnswers);
 		while ($arAnswer = $rsAnswers->fetch_assoc())
 		{
 			$arResult[] = $arAnswer;
