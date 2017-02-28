@@ -51,9 +51,13 @@ if (isset($_REQUEST['ID']) && intval($_REQUEST['ID']) > 0)
 	}
 	$obTableCategory = new Data_Category();
 	$rsCategory = $obTableCategory->select(array(
-		'FIELDS' => array('NAME', 'ID'),
+		'FIELDS' => array('NAME', 'ID', 'SORT'),
 		'FILTER' => array(
 			'MODELID' => $_REQUEST['ID']
+		),
+		'ORDER'	 => array(
+			'SORT'	 => 'ASC',
+			'ID'	 => 'ASC'
 	)));
 	$arCategories = array();
 	while ($arRow = $rsCategory->fetch_assoc())
@@ -91,40 +95,48 @@ if (isset($_REQUEST['ID']) && intval($_REQUEST['ID']) > 0)
 				<? if (isset($_REQUEST['ID'])): ?>
 					<input type="hidden" name="ID" value="<?= $_REQUEST['ID'] ?>">
 				<? endif; ?>
-				<table class="elements" id="edittesttable">
+				<table class="elements" id="edittesttable" >
 					<tr>
-						<td colspan="3">
+						<td colspan="4">
 							<input type="text"  value="<? if (isset($arModel)) print($arModel['NAME']) ?>" placeholder="Название схемы" name="NAME">
 						</td>
 					</tr>
 					<tr>
-						<td colspan="3">
+						<td colspan="4">
 							<input type="text" value="<? if (isset($arModel)) print($arModel['OBJECT']) ?>" placeholder="Обьект описания" name="OBJECT">
 						</td>
 					</tr>
 					<tr>
-						<td colspan="3">
+						<td colspan="4">
 							<textarea name="DESCRIPTION" placeholder="Описание схемы" ><? if (isset($arModel)) print($arModel['DESCRIPTION']) ?></textarea>
 						</td>
+					</tr>
+					<tr>
+						<th class="tonkyi">
+							Сорт.
+						</th>
+						<td colspan="3"></td>
 					</tr>
 					<? if (isset($arCategories)): ?>
 						<? foreach ($arCategories as $arCategory): ?>
 							<? if (!empty($arCategory)): ?>
 								<tr class="jscategory" data-index="<?= $arCategory['ID'] ?>">
 									<td>
+										<input class="centered" type="text" value="<?= $arCategory['SORT'] ?>" name="CATEGORY[<?= $arCategory['ID'] ?>][SORT]" size="1">
+									</td>
+									<td>
 										<input name="CATEGORY[<?= $arCategory['ID'] ?>][NAME]" type="text" value="<?= $arCategory['NAME'] ?>" placeholder="Ветвь схемы">
 									</td>
 									<td>
 										<button type="button" class="jsaddelement">+ Элемент</button>
 									</td>
-
 									<td>
 										<a  class="delete" href="/edittest.php?action=delcat&catid=<?= $arCategory['ID'] ?>&ID=<?= $_REQUEST['ID'] ?>" >&times;</a>
 									</td>
 								</tr>
 								<? foreach ($arCategory['ELEMENTS'] as $arElement): ?>
 									<tr class="jselement">
-										<td colspan="2">
+										<td colspan="3">
 											<input name="CATEGORY[<?= $arCategory['ID'] ?>][ELEMENT][<?= $arElement['ID'] ?>]" type="text" placeholder="Название элемента" value="<?= $arElement['NAME'] ?>">
 										</td>
 										<td>
@@ -137,7 +149,7 @@ if (isset($_REQUEST['ID']) && intval($_REQUEST['ID']) > 0)
 					<? endif; ?>
 
 					<tr>
-						<td colspan="3">
+						<td colspan="4">
 							<button type="button" id="addcategory" >+ Ветвь</button>
 						</td>
 					</tr>

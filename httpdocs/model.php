@@ -26,6 +26,10 @@ $rsCategory = $obTableCategory->select(array(
 	'FIELDS' => array('NAME', 'ID'),
 	'FILTER' => array(
 		'MODELID' => $_REQUEST['ID']
+	),
+	'ORDER'	 => array(
+		'SORT'	 => 'ASC',
+		'ID'	 => 'ASC'
 		)));
 $arCategories = array();
 while ($arRow = $rsCategory->fetch_assoc())

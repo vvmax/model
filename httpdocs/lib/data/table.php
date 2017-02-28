@@ -11,10 +11,21 @@
 class Data_Table
 {
 
+	/**
+	 * Констаны для определения типов полей
+	 */
 	const FIELD_TYPE_INTEGER = 0;
 	const FIELD_TYPE_STRING = 1;
 	const FIELD_TYPE_DATE = 2;
+
+	/**
+	 * Генерируемый код
+	 */
 	CONST FIELD_TYPE_GENERATE = 3;
+
+	/**
+	 * Учебный класс
+	 */
 	CONST FIELD_TYPE_CLASS = 4;
 	CONST FIELD_TYPE_BOOLEAN = 5;
 
@@ -37,9 +48,9 @@ class Data_Table
 	protected $arLastError;
 
 	/**
-	 * форматирование класса
-	 * @param string $str
-	 * @return string
+	 * Приведение введеного класса к общему виду
+	 * @param string $str класс введеный пользователем
+	 * @return string класс в общем виде 
 	 */
 	function parseClass($str)
 	{
@@ -63,8 +74,12 @@ class Data_Table
 
 	/**
 	 * Метод запроса данных из таблицы
-	 * @param array $arOption
-	 * @return mixed (mysql_result | boolen)
+	 * @param array $arOption Необходимые параметры
+	 * -FIELDS необходимые поля
+	 * -FILTER фильтр
+	 * -JOIN соединение таблиц
+	 * -ORDER сортировка
+	 * @return mixed (mysql_result | boolaen) обьект результата запроса 
 	 */
 	public function select($arOption = array())
 	{
@@ -77,7 +92,9 @@ class Data_Table
 			{
 				$strField = strtoupper($strField);
 				if (!isset($this->arFields[$strField]))
+				{
 					continue;
+				};
 				$arFields[] = $this->tableName . '.' . $strField;
 			}
 		}
@@ -131,6 +148,15 @@ class Data_Table
 		{
 			$query.= " where " . implode(' and ', $arWhere);
 		}
+		if (isset($arOption['ORDER']) && count($arOption['ORDER']) > 0)
+		{
+			$arOrder = array();
+			foreach ($arOption['ORDER'] as $key => $value)
+			{
+				$arOrder[] = $key . ' ' . $value;
+			}
+			$query.=' order by ' . implode(',', $arOrder);
+		}
 		$result = $db->query($query);
 		if ($result !== false)
 		{
@@ -139,6 +165,12 @@ class Data_Table
 		return $result;
 	}
 
+	/**
+	 * Функция добавления в таблицу
+	 * @param array $arOption Необходимые параметры
+	 * -FIELDS необходимые поля
+	 * @return boolean сработала ли вставка
+	 */
 	public function insert($arOption)
 	{
 		if (!isset($arOption['FIELDS']) || empty($arOption['FIELDS']))
@@ -156,7 +188,7 @@ class Data_Table
 		$query.="(" . implode(",", $arFields) . ")";
 		$db = new mysqli(Settings::host, Settings::user, Settings::password, Settings::basename);
 		$db->query('SET NAMES UTF8');
-		$resuls = $db->query($query);
+		$result = $db->query($query);
 		if ($result === false)
 		{
 			$this->arLastError[] = $db->error;
@@ -167,7 +199,8 @@ class Data_Table
 
 	/**
 	 * Получение елементов справвочника
-	 * @return array
+	 * @param array $arFilter фильтр (необ)
+	 * @return array строки справочника
 	 */
 	public function getOptions($arFilter = array())
 	{
@@ -193,11 +226,22 @@ class Data_Table
 		return $arResult;
 	}
 
+	/**
+	 * Получение массива ошибок
+	 * @return array массив ошибок
+	 */
 	public function getLastError()
 	{
 		return $this->arLastError;
 	}
 
+	/**
+	 * Изменение полей таблицы
+	 * @param array $arOption Необходимые параметры
+	 * -FIELDS необходимые поля
+	 * -FILTER фильтр
+	 * @return boolean результат выполнения операции
+	 */
 	public function update($arOption)
 	{
 
@@ -237,11 +281,17 @@ class Data_Table
 		}
 		//else
 		//{
+		//@todo  что то тут стоит
 		//	$result = $db->affected_rows;
 		//}
 		return $result;
 	}
 
+	/**
+	 * Формирование массива условий
+	 * @param array $arFilter массив фильтра
+	 * @return boolean|array sqlусловие для фильтра или ошибка 
+	 */
 	protected function getWhereArray($arFilter)
 	{
 		$arWhere = array();
@@ -304,13 +354,17 @@ class Data_Table
 					default :
 						$this->arLastError[] = 'Неизвестный тип поля ' . $fieldName;
 						return false;
-						break;
 				}
 			}
 		}
 		return $arWhere;
 	}
 
+	/**
+	 * Формирование массива полей
+	 * @param array $arFields запрашиваемый массив полей
+	 * @return boolean|array проверенный массив полей или ошибка
+	 */
 	protected function getFieldsArray($arFields)
 	{
 		$arRes = array();
@@ -345,7 +399,6 @@ class Data_Table
 					break;
 				default:
 					continue;
-					break;
 			}
 			$arRes[$key] = $arValue;
 		}
@@ -357,6 +410,11 @@ class Data_Table
 		return $arRes;
 	}
 
+	/**
+	 * Удаление из таблиц
+	 * @param array $arFilter фильтр
+	 * @return boolean|mysql_result результат выполнения
+	 */
 	public function delete($arFilter)
 	{
 		$arWhere = $this->getWhereArray($arFilter);

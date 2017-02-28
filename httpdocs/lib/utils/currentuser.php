@@ -10,7 +10,6 @@
  */
 class Utils_Currentuser extends Utils_User
 {
-
 	/**
 	 * айди пользователя
 	 * @var int 
@@ -156,7 +155,7 @@ class Utils_Currentuser extends Utils_User
 		}
 		$obUserTable = new Data_Users();
 		$rsUser = $obUserTable->select(array(
-			'FIELDS' => array('ID', 'USERTYPEID','CANMAKE'),
+			'FIELDS' => array('ID', 'USERTYPEID', 'CANMAKE'),
 			'FILTER' => array(
 				'LOGIN'		 => $arRequest['login'],
 				'PASSWORD'	 => $this->codec($arRequest['password'])
@@ -187,6 +186,7 @@ class Utils_Currentuser extends Utils_User
 	{
 		return $_SESSION['CANMAKE'] == 1;
 	}
+
 	public function isLogged()
 	{
 		return isset($_SESSION['secret']);
@@ -210,6 +210,42 @@ class Utils_Currentuser extends Utils_User
 					),
 					"FILTER" => array(
 						'USERID' => $this->id
+					),
+					"JOIN"	 => array(
+						array(
+							'TYPE'	 => 'left',
+							'TABLE'	 => 'model',
+							'ON'	 => array(
+								'ID' => 'MODELID'
+							),
+							'PARENT' => 'answer',
+							'FIELDS' => array(
+								'NAME', "DESCRIPTION"
+							)
+						)
+					)
+				)
+		);
+		$arResult = array();
+		while ($arAnswer = $rsAnswers->fetch_assoc())
+		{
+			$arResult[] = $arAnswer;
+		}
+		return $arResult;
+	}
+	/**
+	 * @todo поместить новые функции для админа на места
+	 */
+	public function getAnswers($id)
+	{
+		$obTableAnswer = new Data_Answer();
+		$rsAnswers = $obTableAnswer->select(
+				array(
+					'FIELDS' => array(
+						'ADATE', "CODE", 'ID'
+					),
+					"FILTER" => array(
+						'USERID' => $id
 					),
 					"JOIN"	 => array(
 						array(

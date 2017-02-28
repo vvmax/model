@@ -10,6 +10,9 @@
 class Data_Model extends Data_Table
 {
 
+	/**
+	 * Стандартный метод для создания объекта
+	 */
 	function __construct()
 	{
 		$this->tableName = 'model';
@@ -26,7 +29,7 @@ class Data_Model extends Data_Table
 				'NAME'	 => 'DESCRIPTION',
 				'TYPE'	 => self::FIELD_TYPE_STRING
 			),
-			'AUTHORID'	 => array(
+			'AUTHORID'		 => array(
 				'NAME'	 => 'AUTHORID',
 				'TYPE'	 => self::FIELD_TYPE_INTEGER
 			),

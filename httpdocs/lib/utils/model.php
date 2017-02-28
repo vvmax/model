@@ -88,6 +88,110 @@ class Utils_Model
 			'FIELDS' => array('NAME', 'ID'),
 			'FILTER' => array(
 				'MODELID' => $arAnswer['MODELID']
+			),
+			'ORDER'	 => array(
+				'SORT'	 => 'ASC',
+				'ID'	 => 'ASC'
+			)
+		));
+		$arCategories = array();
+		while ($arRow = $rsCategory->fetch_assoc())
+		{
+			$arRow['ELEMENTS'] = array();
+			$arCategories[$arRow['ID']] = $arRow;
+		}
+		$obTableElement = new Data_Element();
+		$rsElenent = $obTableElement->select(array(
+			'FILTER' => array(
+				'MODELID' => $arAnswer['MODELID']
+		)));
+		while ($arRow = $rsElenent->fetch_assoc())
+		{
+			$arCategories[$arRow['CATEGORYID']]['ELEMENTS'][] = $arRow;
+		}
+		return array(
+			"ANSWER"	 => $arAnswer,
+			"MODEL"		 => $arModel,
+			"CATEGORIES" => $arCategories
+		);
+	}
+
+	static function getUsersFillModel($answerId, $id)
+	{
+		$obTableAnsweraccess = new Data_Answeraccess();
+		$rsAccess = $obTableAnsweraccess->select(array(
+			'FILTER' => array(
+				'ANSWERID' => $answerId
+			),
+			'FIELDS' => array(
+				'USERID', 'TEACHERID'
+			)
+		));
+		$answerExist = false;
+		$CanLook = false;
+		while ($arAccess = $rsAccess->fetch_assoc())
+		{
+			$CanLook = true;
+			$answerExist = true;
+		}
+
+		//hhkhkh
+		/* 		if ($answerExist === false)
+		  {
+
+
+		  }
+		 * 
+		 */
+		$obTableAnswer = new Data_Answer();
+		$rsAnswer = $obTableAnswer->select(
+				array(
+					'FIELDS' => array('MODELID', 'ANSWER', 'USERID'),
+					'FILTER' => array('ID' => $answerId)
+		));
+		if ($rsAnswer === FALSE)
+		{
+			return FALSE;
+		}
+		$arAnswer = $rsAnswer->fetch_assoc();
+		if ($arAnswer == false)
+		{
+			ob_end_clean();
+			header('Location: /models.php');
+			ob_end_flush();
+			exit();
+		}
+		$arAnswer['DATA'] = unserialize($arAnswer['ANSWER']);
+		if (!isset($arAnswer['MODELID']) || intval($arAnswer['MODELID']) < 1)
+		{
+			ob_end_clean();
+			header('Location: /models.php');
+			ob_end_flush();
+			exit();
+		}
+		$obTableModel = new Data_Model();
+		$rsModels = $obTableModel->select(array(
+			'FIELDS' => array('NAME', 'OBJECT'),
+			"FILTER" => array(
+				'ID' => $arAnswer['MODELID']
+		)));
+		$arModel = $rsModels->fetch_assoc();
+		if (!$arModel)
+		{
+			ob_end_clean();
+			header('Location: /models.php');
+			ob_end_flush();
+			exit();
+		}
+		$obTableCategory = new Data_Category();
+		$rsCategory = $obTableCategory->select(array(
+			'FIELDS' => array('NAME', 'ID'),
+			'FILTER' => array(
+				'MODELID' => $arAnswer['MODELID']
+			),
+			'ORDER'	 => array(
+				'SORT'	 => 'ASC',
+				'ID'	 => 'ASC'
 		)));
 		$arCategories = array();
 		while ($arRow = $rsCategory->fetch_assoc())
@@ -135,7 +239,8 @@ class Utils_Model
 				$cId = $obTableCategory->insert(array(
 					'FIELDS' => array(
 						'MODELID'	 => $id,
-						'NAME'		 => $arCategory['NAME']
+						'NAME'		 => $arCategory['NAME'],
+						'SORT'		 => $arCategory['SORT']
 					)
 				));
 				if ($cId === false)
@@ -210,7 +315,8 @@ class Utils_Model
 						$res = $obTableCategory->insert(array(
 							'FIELDS' => array(
 								'NAME'		 => $arCategory['NAME'],
-								'MODELID'	 => $arOption['ID']
+								'MODELID'	 => $arOption['ID'],
+								'SORT'		 => $arCategory['SORT']
 							)
 						));
 						$catId = $res;
@@ -218,7 +324,10 @@ class Utils_Model
 					else
 					{
 						$res = $obTableCategory->update(array(
-							'FIELDS' => array('NAME' => $arCategory['NAME']),
+							'FIELDS' => array(
+								'NAME'	 => $arCategory['NAME'],
+								'SORT'	 => $arCategory['SORT']
+							),
 							'FILTER' => array(
 								'MODELID'	 => $arOption['ID'],
 								'ID'		 => $key
@@ -327,15 +436,24 @@ class Utils_Model
 
 	public static function deleteModel($arOptions)
 	{
+		return self::deleteUserModel($arOptions, Utils_Currentuser::getInstance()->getId());
+	}
+
+	public static function deleteUserModel($arOptions, $uid = 0)
+	{
 		if (!isset($arOptions['ID']) || intval($arOptions['ID']) <= 0)
 		{
 			return false;
 		}
+		$arFilter = array(
+			'ID' => $arOptions['ID']
+		);
+		if ($uid > 0)
+		{
+			$arFilter['AUTHORID'] = $uid;
+		};
 		$obTableModel = new Data_Model();
-		$res = $obTableModel->delete(array(
-			'ID'		 => $arOptions['ID'],
-			'AUTHORID'	 => Utils_Currentuser::getInstance()->getId()
-		));
+		$res = $obTableModel->delete($arFilter);
 		return ($res !== false);
 	}
 
