@@ -12,7 +12,6 @@
  */
 class Utils_Image
 {
-
 	/**
 	 * Ширина страницы
 	 * @var integer

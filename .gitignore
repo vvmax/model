@@ -1,3 +1,7 @@
 settings.php
 report.xml
 !doc
+nbproject/*
+.htaccess
+.htpasswd
+

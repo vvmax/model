@@ -29,7 +29,7 @@ class Data_Category extends Data_Table
 				'NAME'	 => 'MODELID',
 				'TYPE'	 => self::FIELD_TYPE_INTEGER
 			),
-			'SORT'		 => array(
+			'SORT'	 => array(
 				'NAME'	 => 'SORT',
 				'TYPE'	 => self::FIELD_TYPE_INTEGER
 			)
