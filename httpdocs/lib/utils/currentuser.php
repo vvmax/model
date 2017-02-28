@@ -10,7 +10,6 @@
  */
 class Utils_Currentuser extends Utils_User
 {
-
 	/**
 	 * айди пользователя
 	 * @var int 

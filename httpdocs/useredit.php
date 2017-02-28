@@ -16,6 +16,7 @@ If (isset($_REQUEST['usertype']))
 	else
 	{
 		$arRes = $obUser->addUser($_REQUEST);
+		$check = $arRes;
 	}
 }
 $arUserInfo = Utils_Currentuser::getInstance()->getUserInfo();

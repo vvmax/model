@@ -4,12 +4,15 @@
  * Категории модели
  *
  * @author Maxim Vorobyev
- * @version 1.0
- * @changed 2015.10.14
+ * @version 3.0
+ * @changed 2016.11.14
  */
 class Data_Category extends Data_Table
 {
 
+	/**
+	 * Стандартный метод для создания объекта
+	 */
 	function __construct()
 	{
 		$this->tableName = 'category';
@@ -26,7 +29,7 @@ class Data_Category extends Data_Table
 				'NAME'	 => 'MODELID',
 				'TYPE'	 => self::FIELD_TYPE_INTEGER
 			),
-			'SORT'	 => array(
+			'SORT'		 => array(
 				'NAME'	 => 'SORT',
 				'TYPE'	 => self::FIELD_TYPE_INTEGER
 			)

@@ -48,6 +48,11 @@
 	ga('send', 'pageview');
 
 </script>
-<footer>&copy; 2015-2016, Воробьев Максим<br>"Составление схем" <?= Utils_Util::version ?></footer>
+<footer>			
+	<? if (Utils_Currentuser::getInstance()->isLogged()): ?>
+		<a class=" feedback"  href="/feedback.php">Обратная связь</a> 
+	<? endif; ?>
+	&copy; 2015-2016, Воробьев Максим<br>"Составление схем" <?= Utils_Util::version ?>
+</footer>
 
 

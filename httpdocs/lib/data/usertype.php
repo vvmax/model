@@ -26,6 +26,9 @@ class Data_Usertype extends Data_Table
 	 */
 	const USER_TYPE_STUDENT = 20;
 
+	/**
+	 * Стандартный метод для создания объекта
+	 */
 	function __construct()
 	{
 		$this->tableName = 'usertype';

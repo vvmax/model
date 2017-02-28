@@ -11,6 +11,9 @@
 class Data_Users extends Data_Table
 {
 
+	/**
+	 * Стандартный метод для создания объекта
+	 */
 	function __construct()
 	{
 		$this->tableName = 'users';
@@ -59,7 +62,7 @@ class Data_Users extends Data_Table
 				'NANE'	 => 'FORM',
 				'TYPE'	 => self::FIELD_TYPE_CLASS
 			),
-			'CANMAKE'		 => array(
+			'CANMAKE'	 => array(
 				'NANE'	 => 'CANMAKE',
 				'TYPE'	 => self::FIELD_TYPE_BOOLEAN
 			)
