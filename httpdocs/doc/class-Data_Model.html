@@ -7,7 +7,7 @@
 	<title>Class Data_Model | Model Internal</title>
 
 	<script type="text/javascript" src="resources/combined.js?3041605035"></script>
-	<script type="text/javascript" src="elementlist.js?1786243023"></script>
+	<script type="text/javascript" src="elementlist.js?1556384904"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/bootstrap.min.css?260161822">
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2015443609">
 
@@ -59,13 +59,23 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-Data_Answer.html">Data_Answer</a></li>
+				<li><a href="class-Data_Answeraccess.html">Data_Answeraccess</a></li>
 				<li><a href="class-Data_Category.html">Data_Category</a></li>
 				<li><a href="class-Data_Element.html">Data_Element</a></li>
+				<li><a href="class-Data_Feedback.html">Data_Feedback</a></li>
+				<li><a href="class-Data_Friends.html">Data_Friends</a></li>
+				<li><a href="class-Data_Lists.html">Data_Lists</a></li>
 				<li class="active"><a href="class-Data_Model.html">Data_Model</a></li>
+				<li><a href="class-Data_Schools.html">Data_Schools</a></li>
 				<li><a href="class-Data_Table.html">Data_Table</a></li>
+				<li><a href="class-Data_Towns.html">Data_Towns</a></li>
+				<li><a href="class-Data_Users.html">Data_Users</a></li>
+				<li><a href="class-Data_Usertype.html">Data_Usertype</a></li>
+				<li><a href="class-Utils_Currentuser.html">Utils_Currentuser</a></li>
 				<li><a href="class-Utils_Image.html">Utils_Image</a></li>
 				<li><a href="class-Utils_Model.html">Utils_Model</a></li>
 				<li><a href="class-Utils_User.html">Utils_User</a></li>
+				<li><a href="class-Utils_Util.html">Utils_Util</a></li>
 			</ul>
 
 
@@ -128,7 +138,7 @@
 				1.0<br>
 				<b>Changed:</b>
 				2015.10.14<br>
-		<b>Located at</b> <a href="source-class-Data_Model.html#2-31" title="Go to source code">data/model.php</a><br>
+		<b>Located at</b> <a href="source-class-Data_Model.html#3-43" title="Go to source code">data/model.php</a><br>
 	</div>
 
 
@@ -146,14 +156,18 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Data_Model.html#10-30" title="Go to source code">__construct</a>( )</code>
+			<code><a href="source-class-Data_Model.html#13-41" title="Go to source code">__construct</a>( )</code>
 
 			<div class="description short">
 				
+<p>Стандартный метод для создания объекта</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Стандартный метод для создания объекта</p>
+
 
 
 
@@ -168,8 +182,15 @@
 
 		<h3>Methods inherited from <a href="class-Data_Table.html#methods">Data_Table</a></h3>
 		<p class="elementList">
+			<code><a href="class-Data_Table.html#_delete">delete()</a></code>, 
+			<code><a href="class-Data_Table.html#_getFieldsArray">getFieldsArray()</a></code>, 
+			<code><a href="class-Data_Table.html#_getLastError">getLastError()</a></code>, 
+			<code><a href="class-Data_Table.html#_getOptions">getOptions()</a></code>, 
+			<code><a href="class-Data_Table.html#_getWhereArray">getWhereArray()</a></code>, 
 			<code><a href="class-Data_Table.html#_insert">insert()</a></code>, 
-			<code><a href="class-Data_Table.html#_select">select()</a></code>
+			<code><a href="class-Data_Table.html#_parseClass">parseClass()</a></code>, 
+			<code><a href="class-Data_Table.html#_select">select()</a></code>, 
+			<code><a href="class-Data_Table.html#_update">update()</a></code>
 		</p>
 
 
@@ -183,7 +204,10 @@
 
 		<h3>Constants inherited from <a href="class-Data_Table.html#constants">Data_Table</a></h3>
 		<p class="elementList">
+			<code><a href="class-Data_Table.html#FIELD_TYPE_BOOLEAN"><b>FIELD_TYPE_BOOLEAN</b></a></code>, 
+			<code><a href="class-Data_Table.html#FIELD_TYPE_CLASS"><b>FIELD_TYPE_CLASS</b></a></code>, 
 			<code><a href="class-Data_Table.html#FIELD_TYPE_DATE"><b>FIELD_TYPE_DATE</b></a></code>, 
+			<code><a href="class-Data_Table.html#FIELD_TYPE_GENERATE"><b>FIELD_TYPE_GENERATE</b></a></code>, 
 			<code><a href="class-Data_Table.html#FIELD_TYPE_INTEGER"><b>FIELD_TYPE_INTEGER</b></a></code>, 
 			<code><a href="class-Data_Table.html#FIELD_TYPE_STRING"><b>FIELD_TYPE_STRING</b></a></code>
 		</p>
@@ -195,6 +219,7 @@
 		<h3>Properties inherited from <a href="class-Data_Table.html#properties">Data_Table</a></h3>
 		<p class="elementList">
 			<code><a href="class-Data_Table.html#$arFields"><var>$arFields</var></a></code>, 
+			<code><a href="class-Data_Table.html#$arLastError"><var>$arLastError</var></a></code>, 
 			<code><a href="class-Data_Table.html#$tableName"><var>$tableName</var></a></code>
 		</p>
 

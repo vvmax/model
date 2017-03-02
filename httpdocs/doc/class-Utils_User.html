@@ -7,7 +7,7 @@
 	<title>Class Utils_User | Model Internal</title>
 
 	<script type="text/javascript" src="resources/combined.js?3041605035"></script>
-	<script type="text/javascript" src="elementlist.js?1786243023"></script>
+	<script type="text/javascript" src="elementlist.js?1556384904"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/bootstrap.min.css?260161822">
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2015443609">
 
@@ -59,13 +59,23 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-Data_Answer.html">Data_Answer</a></li>
+				<li><a href="class-Data_Answeraccess.html">Data_Answeraccess</a></li>
 				<li><a href="class-Data_Category.html">Data_Category</a></li>
 				<li><a href="class-Data_Element.html">Data_Element</a></li>
+				<li><a href="class-Data_Feedback.html">Data_Feedback</a></li>
+				<li><a href="class-Data_Friends.html">Data_Friends</a></li>
+				<li><a href="class-Data_Lists.html">Data_Lists</a></li>
 				<li><a href="class-Data_Model.html">Data_Model</a></li>
+				<li><a href="class-Data_Schools.html">Data_Schools</a></li>
 				<li><a href="class-Data_Table.html">Data_Table</a></li>
+				<li><a href="class-Data_Towns.html">Data_Towns</a></li>
+				<li><a href="class-Data_Users.html">Data_Users</a></li>
+				<li><a href="class-Data_Usertype.html">Data_Usertype</a></li>
+				<li><a href="class-Utils_Currentuser.html">Utils_Currentuser</a></li>
 				<li><a href="class-Utils_Image.html">Utils_Image</a></li>
 				<li><a href="class-Utils_Model.html">Utils_Model</a></li>
 				<li class="active"><a href="class-Utils_User.html">Utils_User</a></li>
+				<li><a href="class-Utils_Util.html">Utils_Util</a></li>
 			</ul>
 
 
@@ -96,6 +106,12 @@
 
 
 
+	<div>
+		<h3>Direct known subclasses</h3>
+		<p class="elementList">
+			<code><a href="class-Utils_Currentuser.html">Utils_Currentuser</a></code>
+		</p>
+	</div>
 
 
 
@@ -114,7 +130,7 @@
 				1.0<br>
 				<b>Changed:</b>
 				2015.10.14<br>
-		<b>Located at</b> <a href="source-class-Utils_User.html#2-23" title="Go to source code">utils/user.php</a><br>
+		<b>Located at</b> <a href="source-class-Utils_User.html#3-361" title="Go to source code">utils/user.php</a><br>
 	</div>
 
 
@@ -132,7 +148,238 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-Utils_User.html#11-22" title="Go to source code">__construct</a>( )</code>
+			<code><a href="source-class-Utils_User.html#15-27" title="Go to source code">__construct</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="checkForm" id="_checkForm">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_checkForm">#</a>
+			<code><a href="source-class-Utils_User.html#29-74" title="Go to source code">checkForm</a>( <span>array <var>&amp; $arRequest</var></span> )</code>
+
+			<div class="description short">
+				
+<p>Функция проверки регистрационного
+листа</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Функция проверки регистрационного
+листа</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$arRequest</var></dt>
+						<dd><code>array</code><br>$arRequest массив получаемый из формы</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>boolean</code><br>| array<br>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="addUser" id="_addUser">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_addUser">#</a>
+			<code><a href="source-class-Utils_User.html#76-138" title="Go to source code">addUser</a>( <span>mixed <var>&amp; $arRequest</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="codec" id="_codec">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_codec">#</a>
+			<code><a href="source-class-Utils_User.html#140-148" title="Go to source code">codec</a>( <span>string <var>$password</var></span> )</code>
+
+			<div class="description short">
+				
+<p>кодирование пароля</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>кодирование пароля</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$password</var></dt>
+						<dd><code>string</code><br>$password незашифрованный пароль</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>string</code><br>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="updateUser" id="_updateUser">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_updateUser">#</a>
+			<code><a href="source-class-Utils_User.html#150-217" title="Go to source code">updateUser</a>( <span>mixed <var>&amp; $arRequest</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="search" id="_search">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_search">#</a>
+			<code><a href="source-class-Utils_User.html#219-303" title="Go to source code">search</a>( <span>mixed <var>$arRequest</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getStudentAnswerList" id="_getStudentAnswerList">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getStudentAnswerList">#</a>
+			<code><a href="source-class-Utils_User.html#305-349" title="Go to source code">getStudentAnswerList</a>( <span>mixed <var>$id</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="deleteAnswer" id="_deleteAnswer">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_deleteAnswer">#</a>
+			<code><a href="source-class-Utils_User.html#351-359" title="Go to source code">deleteAnswer</a>( <span>mixed <var>$id</var></span>, <span>mixed <var>$uid</var></span> )</code>
 
 			<div class="description short">
 				
@@ -172,7 +419,7 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_User.html#10" title="Go to source code"><var>$userId</var></a>
+					<a href="source-class-Utils_User.html#13" title="Go to source code"><var>$userId</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$userId" class="anchor">#</a>
