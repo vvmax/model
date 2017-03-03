@@ -12,38 +12,131 @@
  */
 class Utils_Image
 {
-
+	/**
+	 * Ширина страницы
+	 * @var integer
+	 */
 	static $pageWidth = 3507;
+
+	/**
+	 * Высота страницы
+	 * @var integer
+	 */
 	static $pageHeight = 2480;
+
+	/**
+	 * Стандартный отступ
+	 * @var integer
+	 */
 	static $margin = 100;
+
+	/**
+	 * Стандартный цвет фона
+	 * @var array
+	 */
 	static $colorBackG = array(255, 255, 255);
+
+	/**
+	 * Ширина элипса 
+	 * @var integer
+	 */
 	static $ellipseWidth = 0;
+
+	/**
+	 * Выстоа элипса
+	 * @var integer
+	 */
 	static $ellipseHeight = 0;
+
+	/**
+	 * Радиус круга элемента
+	 * @var integer
+	 */
 	static $roundSmall = 10;
+
+	/**
+	 * Радиус круга категории
+	 * @var integer
+	 */
 	static $roundBig = 70;
+
+	/**
+	 * Коэффициент масштабирования
+	 * @var real
+	 */
 	static $k = 0.25;
+
+	/**
+	 * Шрифт текста
+	 * @var string
+	 */
 	static $font = 'calibri.ttf';
+
+	/**
+	 * Размер текста заголовка
+	 * @var integer
+	 */
 	static $headTextSize = 40;
+
+	/**
+	 * Размер текста категории
+	 * @var integer
+	 */
 	static $groupTextSize = 30;
+
+	/**
+	 * Размер текста элемента
+	 * @var integer
+	 */
 	static $elementsTextSize = 20;
+
+	/**
+	 * Стандартный размер текста
+	 * @var integer
+	 */
 	static $defaultFontSize = 25;
+
+	/**
+	 * Стандартный цвет текста
+	 * @var array
+	 */
 	static $defaultFontColor = array(0, 0, 0);
 
+	/**
+	 * Преобразование Х координаты из одной системы координат в другую
+	 * @param integer $value Х координата относительно центра схемы
+	 * @return integer Х координата относительно начала картинки
+	 */
 	static function calcX($value)
 	{
 		return self::$pageWidth / 2 + $value;
 	}
 
+	/**
+	 * Преобразование У координаты из одной системы координат в другую
+	 * @param integer $value У координата относительно центра схемы
+	 * @return integer У координата относительно начала картинки
+	 */
 	static function calcY($value)
 	{
 		return self::$pageHeight / 2 - $value;
 	}
 
+	/**
+	 * Вывод текста на картинку
+	 * @param type $image 
+	 * @param type $xc
+	 * @param type $yc
+	 * @param string $text
+	 * @param type $fontColor
+	 * @param type $arOptions
+	 */
 	static function writeText($image, $xc, $yc, $text, $fontColor, $arOptions = array())
 	{
-		Utils_Util::printDebug(array($image, $xc, $yc, $text, $fontColor, $arOptions));
 		if (empty($text))
+		{
 			$text = '________';
+		};
 		$fullFont = $_SERVER['DOCUMENT_ROOT'] . '/lib/fonts/' . self::$font;
 		$fontSize = (isset($arOptions['FONTSIZE']) ? $arOptions['FONTSIZE'] : self::$defaultFontSize);
 		$arSizes = imagettfbbox($fontSize, 0, $fullFont, $text);
@@ -112,7 +205,7 @@ class Utils_Image
 				'FONTSIZE'		 => self::$groupTextSize
 					)
 			);
-			for ($u = 1; $u <= $countElements;  ++$u)
+			for ($u = 1; $u <= $countElements; ++$u)
 			{
 				$coordX = $x0 + $u * $deltaX;
 				$coordY = (($y - $y0) / ($x - $x0)) * ($coordX - $x0) + $y0;

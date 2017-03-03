@@ -1,8 +1,6 @@
 <?php
-
-
 /*
- * Справочник городов
+ * Справочник школ
  *
  * @author Maxim Vorobyev
  * @version 1.0
