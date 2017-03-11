@@ -1,4 +1,5 @@
 <?php
+namespace Maxed\Utils;
 
 /**
  * Полезные функции
@@ -8,7 +9,7 @@
  * @changed 2015.12.05
  *
 */
-class Utils_Util {
+class Util {
 	const version='v 3.0';
     static function printDebug($value)
     {

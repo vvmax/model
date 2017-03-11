@@ -7,7 +7,7 @@
 	<title>Class Utils_Image | Model Internal</title>
 
 	<script type="text/javascript" src="resources/combined.js?3041605035"></script>
-	<script type="text/javascript" src="elementlist.js?1786243023"></script>
+	<script type="text/javascript" src="elementlist.js?1556384904"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/bootstrap.min.css?260161822">
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2015443609">
 
@@ -59,13 +59,23 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-Data_Answer.html">Data_Answer</a></li>
+				<li><a href="class-Data_Answeraccess.html">Data_Answeraccess</a></li>
 				<li><a href="class-Data_Category.html">Data_Category</a></li>
 				<li><a href="class-Data_Element.html">Data_Element</a></li>
+				<li><a href="class-Data_Feedback.html">Data_Feedback</a></li>
+				<li><a href="class-Data_Friends.html">Data_Friends</a></li>
+				<li><a href="class-Data_Lists.html">Data_Lists</a></li>
 				<li><a href="class-Data_Model.html">Data_Model</a></li>
+				<li><a href="class-Data_Schools.html">Data_Schools</a></li>
 				<li><a href="class-Data_Table.html">Data_Table</a></li>
+				<li><a href="class-Data_Towns.html">Data_Towns</a></li>
+				<li><a href="class-Data_Users.html">Data_Users</a></li>
+				<li><a href="class-Data_Usertype.html">Data_Usertype</a></li>
+				<li><a href="class-Utils_Currentuser.html">Utils_Currentuser</a></li>
 				<li class="active"><a href="class-Utils_Image.html">Utils_Image</a></li>
 				<li><a href="class-Utils_Model.html">Utils_Model</a></li>
 				<li><a href="class-Utils_User.html">Utils_User</a></li>
+				<li><a href="class-Utils_Util.html">Utils_Util</a></li>
 			</ul>
 
 
@@ -112,9 +122,13 @@
 				Maxim Vorobyev<br>
 				<b>Version:</b>
 				1.0<br>
+				<b>Todo:</b>
+				- Центрирование надписей<br>
+				<b>Todo:</b>
+				- В шахматном порядке<br>
 				<b>Changed:</b>
 				2015.10.14<br>
-		<b>Located at</b> <a href="source-class-Utils_Image.html#2-106" title="Go to source code">utils/image.php</a><br>
+		<b>Located at</b> <a href="source-class-Utils_Image.html#3-228" title="Go to source code">utils/image.php</a><br>
 	</div>
 
 
@@ -125,24 +139,39 @@
 
 			<td class="attributes"><code>
 				 public static
-				
+				integer
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_calcX">#</a>
-			<code><a href="source-class-Utils_Image.html#26-29" title="Go to source code">calcX</a>( <span>mixed <var>$value</var></span> )</code>
+			<code><a href="source-class-Utils_Image.html#105-113" title="Go to source code">calcX</a>( <span>integer <var>$value</var></span> )</code>
 
 			<div class="description short">
 				
+<p>Преобразование Х координаты из одной
+системы координат в другую</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Преобразование Х координаты из одной
+системы координат в другую</p>
 
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$value</var></dt>
+						<dd><code>integer</code><br>$value Х координата относительно центра схемы</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>integer</code><br>Х координата относительно начала картинки<br>
+					</div>
 
 
 
@@ -154,24 +183,39 @@
 
 			<td class="attributes"><code>
 				 public static
-				
+				integer
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_calcY">#</a>
-			<code><a href="source-class-Utils_Image.html#30-33" title="Go to source code">calcY</a>( <span>mixed <var>$value</var></span> )</code>
+			<code><a href="source-class-Utils_Image.html#115-123" title="Go to source code">calcY</a>( <span>integer <var>$value</var></span> )</code>
 
 			<div class="description short">
 				
+<p>Преобразование У координаты из одной
+системы координат в другую</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Преобразование У координаты из одной
+системы координат в другую</p>
 
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$value</var></dt>
+						<dd><code>integer</code><br>$value У координата относительно центра схемы</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>integer</code><br>У координата относительно начала картинки<br>
+					</div>
 
 
 
@@ -190,16 +234,35 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_writeText">#</a>
-			<code><a href="source-class-Utils_Image.html#34-50" title="Go to source code">writeText</a>( <span>mixed <var>$image</var></span>, <span>mixed <var>$xc</var></span>, <span>mixed <var>$yc</var></span>, <span>mixed <var>$text</var></span>, <span>mixed <var>$fontColor</var></span>, <span>mixed <var>$arOptions</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-Utils_Image.html#125-175" title="Go to source code">writeText</a>( <span>type <var>$image</var></span>, <span>type <var>$xc</var></span>, <span>type <var>$yc</var></span>, <span>string <var>$text</var></span>, <span>type <var>$fontColor</var></span>, <span>type <var>$arOptions</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
 				
+<p>Вывод текста на картинку</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Вывод текста на картинку</p>
 
 
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$image</var></dt>
+						<dd><code>type</code><br>$image</dd>
+						<dt><var>$xc</var></dt>
+						<dd><code>type</code><br>$xc</dd>
+						<dt><var>$yc</var></dt>
+						<dd><code>type</code><br>$yc</dd>
+						<dt><var>$text</var></dt>
+						<dd><code>string</code><br>$text</dd>
+						<dt><var>$fontColor</var></dt>
+						<dd><code>type</code><br>$fontColor</dd>
+						<dt><var>$arOptions</var></dt>
+						<dd><code>type</code><br>$arOptions</dd>
+					</dl></div>
 
 
 
@@ -219,7 +282,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getImage">#</a>
-			<code><a href="source-class-Utils_Image.html#53-105" title="Go to source code">getImage</a>( <span>mixed <var>$arData</var></span> )</code>
+			<code><a href="source-class-Utils_Image.html#177-226" title="Go to source code">getImage</a>( <span>mixed <var>$arData</var></span> )</code>
 
 			<div class="description short">
 				
@@ -259,17 +322,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#10" title="Go to source code"><var>$pageWidth</var></a>
+					<a href="source-class-Utils_Image.html#15-19" title="Go to source code"><var>$pageWidth</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$pageWidth" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Ширина страницы</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Ширина страницы</p>
+
 
 				</div>
 			</div></td>
@@ -281,17 +348,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#11" title="Go to source code"><var>$pageHeight</var></a>
+					<a href="source-class-Utils_Image.html#21-25" title="Go to source code"><var>$pageHeight</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$pageHeight" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Высота страницы</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Высота страницы</p>
+
 
 				</div>
 			</div></td>
@@ -303,17 +374,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#12" title="Go to source code"><var>$margin</var></a>
+					<a href="source-class-Utils_Image.html#27-31" title="Go to source code"><var>$margin</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$margin" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Стандартный отступ</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Стандартный отступ</p>
+
 
 				</div>
 			</div></td>
@@ -325,17 +400,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#13" title="Go to source code"><var>$colorBackG</var></a>
+					<a href="source-class-Utils_Image.html#33-37" title="Go to source code"><var>$colorBackG</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$colorBackG" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Стандартный цвет фона</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Стандартный цвет фона</p>
+
 
 				</div>
 			</div></td>
@@ -347,17 +426,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#14" title="Go to source code"><var>$ellipseWidth</var></a>
+					<a href="source-class-Utils_Image.html#39-43" title="Go to source code"><var>$ellipseWidth</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$ellipseWidth" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Ширина элипса</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Ширина элипса</p>
+
 
 				</div>
 			</div></td>
@@ -369,17 +452,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#15" title="Go to source code"><var>$ellipseHeight</var></a>
+					<a href="source-class-Utils_Image.html#45-49" title="Go to source code"><var>$ellipseHeight</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$ellipseHeight" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Выстоа элипса</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Выстоа элипса</p>
+
 
 				</div>
 			</div></td>
@@ -391,17 +478,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#16" title="Go to source code"><var>$roundSmall</var></a>
+					<a href="source-class-Utils_Image.html#51-55" title="Go to source code"><var>$roundSmall</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$roundSmall" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Радиус круга элемента</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Радиус круга элемента</p>
+
 
 				</div>
 			</div></td>
@@ -413,17 +504,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#17" title="Go to source code"><var>$roundBig</var></a>
+					<a href="source-class-Utils_Image.html#57-61" title="Go to source code"><var>$roundBig</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$roundBig" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Радиус круга категории</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Радиус круга категории</p>
+
 
 				</div>
 			</div></td>
@@ -431,21 +526,25 @@
 		<tr data-order="k" id="$k">
 			<td class="attributes"><code>
 				public static 
-				float
+				real
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#18" title="Go to source code"><var>$k</var></a>
+					<a href="source-class-Utils_Image.html#63-67" title="Go to source code"><var>$k</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$k" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Коэффициент масштабирования</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Коэффициент масштабирования</p>
+
 
 				</div>
 			</div></td>
@@ -457,17 +556,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#19" title="Go to source code"><var>$font</var></a>
+					<a href="source-class-Utils_Image.html#69-73" title="Go to source code"><var>$font</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$font" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Шрифт текста</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Шрифт текста</p>
+
 
 				</div>
 			</div></td>
@@ -479,17 +582,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#20" title="Go to source code"><var>$headTextSize</var></a>
+					<a href="source-class-Utils_Image.html#75-79" title="Go to source code"><var>$headTextSize</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$headTextSize" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Размер текста заголовка</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Размер текста заголовка</p>
+
 
 				</div>
 			</div></td>
@@ -501,17 +608,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#21" title="Go to source code"><var>$groupTextSize</var></a>
+					<a href="source-class-Utils_Image.html#81-85" title="Go to source code"><var>$groupTextSize</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$groupTextSize" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Размер текста категории</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Размер текста категории</p>
+
 
 				</div>
 			</div></td>
@@ -523,17 +634,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#22" title="Go to source code"><var>$elementsTextSize</var></a>
+					<a href="source-class-Utils_Image.html#87-91" title="Go to source code"><var>$elementsTextSize</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$elementsTextSize" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Размер текста элемента</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Размер текста элемента</p>
+
 
 				</div>
 			</div></td>
@@ -545,17 +660,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#23" title="Go to source code"><var>$defaultFontSize</var></a>
+					<a href="source-class-Utils_Image.html#93-97" title="Go to source code"><var>$defaultFontSize</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$defaultFontSize" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Стандартный размер текста</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Стандартный размер текста</p>
+
 
 				</div>
 			</div></td>
@@ -567,17 +686,21 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Utils_Image.html#24" title="Go to source code"><var>$defaultFontColor</var></a>
+					<a href="source-class-Utils_Image.html#99-103" title="Go to source code"><var>$defaultFontColor</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$defaultFontColor" class="anchor">#</a>
 
 				<div class="description short">
 					
+<p>Стандартный цвет текста</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Стандартный цвет текста</p>
+
 
 				</div>
 			</div></td>

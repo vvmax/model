@@ -1,4 +1,6 @@
 <?php
+namespace Maxed\Data;
+
 /*
  * Справочник школ
  *
@@ -6,7 +8,7 @@
  * @version 1.0
  * @changed 2015.12.14
  */
-class Data_Schools extends Data_Lists{
+class Schools extends Lists{
         function __construct() 
     {
         $this->tableName = 'schools';

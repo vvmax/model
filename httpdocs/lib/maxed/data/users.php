@@ -1,4 +1,5 @@
 <?php
+namespace Maxed\Data;
 
 /*
  * Таблица пользователей
@@ -8,7 +9,7 @@
  * @changed 2015.12.14
  */
 
-class Data_Users extends Data_Table
+class Users extends Table
 {
 
 	/**

@@ -1,16 +1,18 @@
 <?php
 /**
- * Общий файл 
+ * Общий файл
  */
+session_start();
+ob_start();
 /**
  * Функция автозагрузки классов
  * @param string $name имя класса
  */
-session_start();
-ob_start();
-function __autoload($name) {
-    $name = strtolower(str_replace('_','/',$name));
-    $path = realpath(dirname(__FILE__))."/$name.php";
+function __autoload($name)
+{
+    $name = strtolower(str_replace('\\', DIRECTORY_SEPARATOR, $name));
+    $path = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "$name.php";
     if (file_exists($path)) require_once $path;
 }
-$user= new Utils_User();
+
+$user = new \Maxed\Utils\User();

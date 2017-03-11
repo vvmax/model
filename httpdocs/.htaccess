@@ -1,4 +1,4 @@
 AddDefaultCharset UTF-8
 <Files .htpasswd>
-   deny from all  #запрет доступа из браузера к .htpasswd
+   deny from all
 </Files>

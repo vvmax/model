@@ -7,7 +7,7 @@
 	<title>Class Data_Table | Model Internal</title>
 
 	<script type="text/javascript" src="resources/combined.js?3041605035"></script>
-	<script type="text/javascript" src="elementlist.js?1786243023"></script>
+	<script type="text/javascript" src="elementlist.js?1556384904"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/bootstrap.min.css?260161822">
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?2015443609">
 
@@ -59,13 +59,23 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-Data_Answer.html">Data_Answer</a></li>
+				<li><a href="class-Data_Answeraccess.html">Data_Answeraccess</a></li>
 				<li><a href="class-Data_Category.html">Data_Category</a></li>
 				<li><a href="class-Data_Element.html">Data_Element</a></li>
+				<li><a href="class-Data_Feedback.html">Data_Feedback</a></li>
+				<li><a href="class-Data_Friends.html">Data_Friends</a></li>
+				<li><a href="class-Data_Lists.html">Data_Lists</a></li>
 				<li><a href="class-Data_Model.html">Data_Model</a></li>
+				<li><a href="class-Data_Schools.html">Data_Schools</a></li>
 				<li class="active"><a href="class-Data_Table.html">Data_Table</a></li>
+				<li><a href="class-Data_Towns.html">Data_Towns</a></li>
+				<li><a href="class-Data_Users.html">Data_Users</a></li>
+				<li><a href="class-Data_Usertype.html">Data_Usertype</a></li>
+				<li><a href="class-Utils_Currentuser.html">Utils_Currentuser</a></li>
 				<li><a href="class-Utils_Image.html">Utils_Image</a></li>
 				<li><a href="class-Utils_Model.html">Utils_Model</a></li>
 				<li><a href="class-Utils_User.html">Utils_User</a></li>
+				<li><a href="class-Utils_Util.html">Utils_Util</a></li>
 			</ul>
 
 
@@ -95,12 +105,25 @@
 		<h3>Direct known subclasses</h3>
 		<p class="elementList">
 			<code><a href="class-Data_Answer.html">Data_Answer</a></code>, 
+			<code><a href="class-Data_Answeraccess.html">Data_Answeraccess</a></code>, 
 			<code><a href="class-Data_Category.html">Data_Category</a></code>, 
 			<code><a href="class-Data_Element.html">Data_Element</a></code>, 
-			<code><a href="class-Data_Model.html">Data_Model</a></code>
+			<code><a href="class-Data_Feedback.html">Data_Feedback</a></code>, 
+			<code><a href="class-Data_Friends.html">Data_Friends</a></code>, 
+			<code><a href="class-Data_Lists.html">Data_Lists</a></code>, 
+			<code><a href="class-Data_Model.html">Data_Model</a></code>, 
+			<code><a href="class-Data_Users.html">Data_Users</a></code>, 
+			<code><a href="class-Data_Usertype.html">Data_Usertype</a></code>
 		</p>
 	</div>
 
+	<div>
+		<h3>Indirect known subclasses</h3>
+		<p class="elementList">
+			<code><a href="class-Data_Schools.html">Data_Schools</a></code>, 
+			<code><a href="class-Data_Towns.html">Data_Towns</a></code>
+		</p>
+	</div>
 
 
 
@@ -112,13 +135,57 @@
 		
 		
 
-		<b>Located at</b> <a href="source-class-Data_Table.html#10-117" title="Go to source code">data/table.php</a><br>
+		<b>Located at</b> <a href="source-class-Data_Table.html#11-437" title="Go to source code">data/table.php</a><br>
 	</div>
 
 
 
 		<h2>Methods summary</h2>
 		<table class="summary table table-bordered table-striped" id="methods">
+		<tr data-order="parseClass" id="_parseClass">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_parseClass">#</a>
+			<code><a href="source-class-Data_Table.html#50-73" title="Go to source code">parseClass</a>( <span>string <var>$str</var></span> )</code>
+
+			<div class="description short">
+				
+<p>Приведение введеного класса к общему
+виду</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Приведение введеного класса к общему
+виду</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$str</var></dt>
+						<dd><code>string</code><br>$str класс введеный пользователем</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>string</code><br>класс в общем виде<br>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="select" id="_select">
 
 			<td class="attributes"><code>
@@ -130,7 +197,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_select">#</a>
-			<code><a href="source-class-Data_Table.html#24-68" title="Go to source code">select</a>( <span>array <var>$arOption</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-Data_Table.html#75-166" title="Go to source code">select</a>( <span>array <var>$arOption</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
 				
@@ -147,12 +214,14 @@
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$arOption</var></dt>
-						<dd><code>array</code><br>$arOption</dd>
+						<dd><code>array</code><br>$arOption Необходимые параметры -FIELDS
+необходимые поля -FILTER фильтр -JOIN соединение
+таблиц -ORDER сортировка</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						<code>mixed</code><br>(mysql_result | boolen)<br>
+						<code>mixed</code><br>(mysql_result | boolaen) обьект результата запроса<br>
 					</div>
 
 
@@ -165,24 +234,286 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_insert">#</a>
-			<code><a href="source-class-Data_Table.html#69-115" title="Go to source code">insert</a>( <span>mixed <var>$arOption</var></span> )</code>
+			<code><a href="source-class-Data_Table.html#168-198" title="Go to source code">insert</a>( <span>array <var>$arOption</var></span> )</code>
 
 			<div class="description short">
 				
+<p>Функция добавления в таблицу</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Функция добавления в таблицу</p>
 
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$arOption</var></dt>
+						<dd><code>array</code><br>$arOption Необходимые параметры -FIELDS
+необходимые поля</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>boolean</code><br>сработала ли вставка<br>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getOptions" id="_getOptions">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getOptions">#</a>
+			<code><a href="source-class-Data_Table.html#200-227" title="Go to source code">getOptions</a>( <span>array <var>$arFilter</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+			<div class="description short">
+				
+<p>Получение елементов справвочника</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Получение елементов справвочника</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$arFilter</var></dt>
+						<dd><code>array</code><br>$arFilter фильтр (необ)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>array</code><br>строки справочника<br>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getLastError" id="_getLastError">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getLastError">#</a>
+			<code><a href="source-class-Data_Table.html#229-236" title="Go to source code">getLastError</a>( )</code>
+
+			<div class="description short">
+				
+<p>Получение массива ошибок</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Получение массива ошибок</p>
+
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>array</code><br>массив ошибок<br>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="update" id="_update">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_update">#</a>
+			<code><a href="source-class-Data_Table.html#238-288" title="Go to source code">update</a>( <span>array <var>$arOption</var></span> )</code>
+
+			<div class="description short">
+				
+<p>Изменение полей таблицы</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Изменение полей таблицы</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$arOption</var></dt>
+						<dd><code>array</code><br>$arOption Необходимые параметры -FIELDS
+необходимые поля -FILTER фильтр</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>boolean</code><br>результат выполнения операции<br>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getWhereArray" id="_getWhereArray">
+
+			<td class="attributes"><code>
+				 protected 
+				boolean|array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getWhereArray">#</a>
+			<code><a href="source-class-Data_Table.html#290-361" title="Go to source code">getWhereArray</a>( <span>array <var>$arFilter</var></span> )</code>
+
+			<div class="description short">
+				
+<p>Формирование массива условий</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Формирование массива условий</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$arFilter</var></dt>
+						<dd><code>array</code><br>$arFilter массив фильтра</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>boolean|array</code><br>sqlусловие для фильтра или ошибка<br>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getFieldsArray" id="_getFieldsArray">
+
+			<td class="attributes"><code>
+				 protected 
+				boolean|array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getFieldsArray">#</a>
+			<code><a href="source-class-Data_Table.html#363-411" title="Go to source code">getFieldsArray</a>( <span>array <var>$arFields</var></span> )</code>
+
+			<div class="description short">
+				
+<p>Формирование массива полей</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Формирование массива полей</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$arFields</var></dt>
+						<dd><code>array</code><br>$arFields запрашиваемый массив полей</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>boolean|array</code><br>проверенный массив полей или ошибка<br>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="delete" id="_delete">
+
+			<td class="attributes"><code>
+				 public 
+				boolean|mysql_result
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_delete">#</a>
+			<code><a href="source-class-Data_Table.html#413-435" title="Go to source code">delete</a>( <span>array <var>$arFilter</var></span> )</code>
+
+			<div class="description short">
+				
+<p>Удаление из таблиц</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Удаление из таблиц</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$arFilter</var></dt>
+						<dd><code>array</code><br>$arFilter фильтр</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>boolean|mysql_result</code><br>результат выполнения<br>
+					</div>
 
 
 
@@ -206,7 +537,7 @@
 
 			<td class="attributes"><code>integer</code></td>
 			<td class="name"><code>
-					<a href="source-class-Data_Table.html#11" title="Go to source code"><b>FIELD_TYPE_INTEGER</b></a>
+					<a href="source-class-Data_Table.html#14-17" title="Go to source code"><b>FIELD_TYPE_INTEGER</b></a>
 			</code></td>
 			<td class="value"><code><span class="php-num">0</span></code></td>
 			<td class="description"><div>
@@ -214,10 +545,14 @@
 
 				<div class="description short">
 					
+<p>Констаны для определения типов полей</p>
+
 				</div>
 
 				<div class="description detailed hidden">
 					
+<p>Констаны для определения типов полей</p>
+
 
 				</div>
 			</div></td>
@@ -226,7 +561,7 @@
 
 			<td class="attributes"><code>integer</code></td>
 			<td class="name"><code>
-					<a href="source-class-Data_Table.html#12" title="Go to source code"><b>FIELD_TYPE_STRING</b></a>
+					<a href="source-class-Data_Table.html#18" title="Go to source code"><b>FIELD_TYPE_STRING</b></a>
 			</code></td>
 			<td class="value"><code><span class="php-num">1</span></code></td>
 			<td class="description"><div>
@@ -246,11 +581,79 @@
 
 			<td class="attributes"><code>integer</code></td>
 			<td class="name"><code>
-					<a href="source-class-Data_Table.html#13" title="Go to source code"><b>FIELD_TYPE_DATE</b></a>
+					<a href="source-class-Data_Table.html#19" title="Go to source code"><b>FIELD_TYPE_DATE</b></a>
 			</code></td>
 			<td class="value"><code><span class="php-num">2</span></code></td>
 			<td class="description"><div>
 				<a href="#FIELD_TYPE_DATE" class="anchor">#</a>
+
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="FIELD_TYPE_GENERATE" id="FIELD_TYPE_GENERATE">
+
+			<td class="attributes"><code>integer</code></td>
+			<td class="name"><code>
+					<a href="source-class-Data_Table.html#21-24" title="Go to source code"><b>FIELD_TYPE_GENERATE</b></a>
+			</code></td>
+			<td class="value"><code><span class="php-num">3</span></code></td>
+			<td class="description"><div>
+				<a href="#FIELD_TYPE_GENERATE" class="anchor">#</a>
+
+				<div class="description short">
+					
+<p>Генерируемый код</p>
+
+				</div>
+
+				<div class="description detailed hidden">
+					
+<p>Генерируемый код</p>
+
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="FIELD_TYPE_CLASS" id="FIELD_TYPE_CLASS">
+
+			<td class="attributes"><code>integer</code></td>
+			<td class="name"><code>
+					<a href="source-class-Data_Table.html#26-29" title="Go to source code"><b>FIELD_TYPE_CLASS</b></a>
+			</code></td>
+			<td class="value"><code><span class="php-num">4</span></code></td>
+			<td class="description"><div>
+				<a href="#FIELD_TYPE_CLASS" class="anchor">#</a>
+
+				<div class="description short">
+					
+<p>Учебный класс</p>
+
+				</div>
+
+				<div class="description detailed hidden">
+					
+<p>Учебный класс</p>
+
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="FIELD_TYPE_BOOLEAN" id="FIELD_TYPE_BOOLEAN">
+
+			<td class="attributes"><code>integer</code></td>
+			<td class="name"><code>
+					<a href="source-class-Data_Table.html#30" title="Go to source code"><b>FIELD_TYPE_BOOLEAN</b></a>
+			</code></td>
+			<td class="value"><code><span class="php-num">5</span></code></td>
+			<td class="description"><div>
+				<a href="#FIELD_TYPE_BOOLEAN" class="anchor">#</a>
 
 				<div class="description short">
 					
@@ -269,14 +672,14 @@
 
 		<h2>Properties summary</h2>
 		<table class="summary table table-bordered table-striped" id="properties">
-		<tr data-order="tableName" id="tableName">
+		<tr data-order="tableName" id="$tableName">
 			<td class="attributes"><code>
 				protected  
 				string
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Data_Table.html#14-18" title="Go to source code"><var>$tableName</var></a>
+					<a href="source-class-Data_Table.html#32-36" title="Go to source code"><var>$tableName</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$tableName" class="anchor">#</a>
@@ -302,20 +705,46 @@
 			</code></td>
 
 			<td class="name">
-					<a href="source-class-Data_Table.html#19-23" title="Go to source code"><var>$arFields</var></a>
+					<a href="source-class-Data_Table.html#38-42" title="Go to source code"><var>$arFields</var></a>
 			</td>
 			<td class="description"><div>
 				<a href="#$arFields" class="anchor">#</a>
 
 				<div class="description short">
 					
-<p>Массив полей</p>
+<p>Массив существующих полей</p>
 
 				</div>
 
 				<div class="description detailed hidden">
 					
-<p>Массив полей</p>
+<p>Массив существующих полей</p>
+
+
+				</div>
+			</div></td>
+		</tr>
+		<tr data-order="arLastError" id="$arLastError">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
+
+			<td class="name">
+					<a href="source-class-Data_Table.html#44-48" title="Go to source code"><var>$arLastError</var></a>
+			</td>
+			<td class="description"><div>
+				<a href="#$arLastError" class="anchor">#</a>
+
+				<div class="description short">
+					
+<p>описание последней ошибки</p>
+
+				</div>
+
+				<div class="description detailed hidden">
+					
+<p>описание последней ошибки</p>
 
 
 				</div>

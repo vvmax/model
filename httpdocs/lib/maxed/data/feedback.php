@@ -1,4 +1,6 @@
 <?php
+namespace Maxed\Data;
+
 /**
  * Таблица с сообщениями обратной связи
  *
@@ -6,7 +8,7 @@
  * @version 3.0
  * @changed 2017.01.14
  */
-class Data_Feedback extends Data_Table
+class Feedback extends Table
 {
 
 	/**

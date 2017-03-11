@@ -375,12 +375,3 @@ a,button{
 	width: 400px;
 	margin-top: $baseMargin*3;
 }
-.feedback{
-	float: left;
-	text-decoration: none;
-	font-size:16px;
-	margin-left: 10px;
-	line-height: $panelHeight;
-	margin-top: -($panelHeight - 2*14)/2;
-	color: #fff;
-}

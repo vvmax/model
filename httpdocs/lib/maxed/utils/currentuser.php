@@ -1,4 +1,5 @@
 <?php
+namespace Maxed\Utils;
 
 /**
  * Класс текущего пользователя
@@ -8,7 +9,7 @@
  * @version 1.0
  * @author Максим Воробьев
  */
-class Utils_Currentuser extends Utils_User
+class Currentuser extends User
 {
 	/**
 	 * айди пользователя

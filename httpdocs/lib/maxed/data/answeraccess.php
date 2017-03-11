@@ -1,11 +1,12 @@
 <?php
+namespace Maxed\Data;
 
 /**
  * Таблица прав доступа к ответам
  * @author Maxim Vorobyev
  * @version 3.0
  */
-class Data_Answeraccess extends Data_Table
+class Answeraccess extends Table
 {
 
 	/**

@@ -1,37 +1,23 @@
 <?php
+namespace Maxed\Data;
 
 /*
- * Справочник типов пользователей
+ * Справочник городов
  *
  * @author Maxim Vorobyev
  * @version 1.0
  * @changed 2015.12.14
  */
 
-class Data_Usertype extends Data_Table
+class Towns extends Lists
 {
-
-	/**
-	 * Тип АДМИНИСТРАТОР
-	 */
-	const USER_TYPE_ADMIN = 1;
-
-	/**
-	 * Тип УЧИТЕЛЬ
-	 */
-	const USER_TYPE_TEACHER = 10;
-
-	/**
-	 * Тип УЧЕНИК
-	 */
-	const USER_TYPE_STUDENT = 20;
 
 	/**
 	 * Стандартный метод для создания объекта
 	 */
 	function __construct()
 	{
-		$this->tableName = 'usertype';
+		$this->tableName = 'towns';
 		$this->arFields = array(
 			'ID'	 => array(
 				'NAME'	 => 'ID',

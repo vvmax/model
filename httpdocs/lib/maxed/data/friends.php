@@ -1,4 +1,5 @@
 <?php
+namespace Maxed\Data;
 
 /*
  * Таблица связей учителей и учеников
@@ -7,7 +8,7 @@
  * @version 2.0
  */
 
-class Data_Friends extends Data_Table
+class Friends extends Table
 {
 
 	/**

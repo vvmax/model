@@ -1,4 +1,5 @@
 <?php
+namespace Maxed\Data;
 
 /*
  * Общий класс для справочных таблиц
@@ -8,7 +9,7 @@
  * @changed 2015.10.14
  */
 
-class Data_Lists extends Data_Table
+class Lists extends Table
 {
 	/**
 	 * Получение айди элемента справочника по значению ,
