@@ -4,7 +4,7 @@ report.xml
 nbproject/*
 .htaccess
 .htpasswd
-.idea
+/.idea
 /cgi
 /subdomain
 
